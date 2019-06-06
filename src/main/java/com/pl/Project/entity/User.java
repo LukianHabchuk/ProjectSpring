@@ -3,27 +3,21 @@ package com.pl.Project.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Person")
-public class Person {
+public class User {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
-    @Column(name = "name")
     private String name;
-    @Column(name = "surName")
     private String surName;
-    @Column(name = "email")
     private String email;
-    @Column(name = "password")
     private String password;
-    @Column(name = "age")
     private int age;
 
-    public Person() {
+    public User() {
     }
 
-    public Person(String name, String surName, String email, String password, int age) {
+    public User(String name, String surName, String email, String password, int age) {
         this.name = name;
         this.surName = surName;
         this.email = email;

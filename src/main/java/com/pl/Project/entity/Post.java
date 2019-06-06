@@ -3,25 +3,20 @@ package com.pl.Project.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Book")
-public class Book {
+public class Post {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
-    @Column(name = "title")
     private String title;
-    @Column(name = "author")
     private String author;
-    @Column(name = "price")
     private double price;
-    @Column(name = "genre")
     private BookGenre genre;
 
-    public Book() {
+    public Post() {
     }
 
-    public Book(String title, String author, double price, BookGenre genre) {
+    public Post(String title, String author, double price, BookGenre genre) {
         this.title = title;
         this.author = author;
         this.price = price;
