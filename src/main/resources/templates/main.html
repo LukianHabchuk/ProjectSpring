@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout::head">
 </head>
 <body>
+<h1>its main page</h1>
+<div th:include="layout :: logpass"></div>
+<div th:include="layout :: navigationPanel"></div>
+
+<div id="templatemo_middle">
+    <img src="images/templatemo_image_01.png" alt="Image 01" />
+    <h1>Introducing Web Store</h1>
+    <p>Web Store is a free css template for your personal or commercial websites. Feel free to download, edit and use this template for any purpose.</p>
+    <a href="#" class="buy_now">Browse All Products</a>
+</div> <!-- END of middle -->
+
+
+
+
 
 </body>
 </html>

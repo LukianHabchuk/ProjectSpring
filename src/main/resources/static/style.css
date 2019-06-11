@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Caption');
+.menu-main {
+    list-style: none;
+    padding: 0 30px;
+    margin: 0;
+    font-size: 18px;
+    text-align: center;
+    position: relative;
+    background: white;
+}
+.menu-main li {display: inline-block;}
+.menu-main a {
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 15px;
+    padding: 10px 30px;
+    font-family: 'PT Sans Caption', sans-serif;
+    color: #777777;
+    transition: .3s linear;
+    position: relative;
+}
+.tab-group li {
+    display: inline-block;
+    font-family: 'PT Sans Caption', sans-serif;
+}

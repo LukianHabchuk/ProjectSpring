@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -35,7 +36,7 @@ public class MainController {
             if(u.equals(userForm)) return "redirect:/registration";
         }
         userDao.save(userForm);
-        return "redirect:/welcome";
+        return "redirect:/login";
     }
 
     @GetMapping(value = "/login")
@@ -51,8 +52,9 @@ public class MainController {
         return "login";
     }
 
-    @GetMapping(value = {"/", "/main"})
+    @GetMapping(value = {"/", "/main.html","/main"})
     public String welcome(Model model) {
+
         return "main";
     }
 
@@ -61,5 +63,34 @@ public class MainController {
         return "admin";
     }
 
+    @GetMapping(value = {"/store.html", "/store"})
+    public String store(Model model) {
+        model.addAttribute("store",postDao.findAll());
+        return "store";
+    }
+
+    @GetMapping(value = "/createpost")
+    public String postCreate(Model m, Principal principal) {
+//        m.addAttribute("post", postDao.findById(principal.));
+        //zwrócenie nazwy widoku profilu użytkownika - profile.html
+        return "profile";
+    }
+
+    @GetMapping(value = {"/postdetails","/postdetails.html"})
+    public String postDetails(Model m, Principal principal) {
+        m.addAttribute("post", postDao.findById(Long.decode(principal.getName())));
+        //zwrócenie nazwy widoku profilu użytkownika - profile.html
+        return "postdetails";
+    }
+
+    @GetMapping(value = {"/about.html","/about"})
+    public String about(Model model) {
+        return "about";
+    }
+
+    @GetMapping(value = {"/profile.html","/profile"})
+    public String profile(Model model) {
+        return "profile";
+    }
 
 }

@@ -1,7 +1,7 @@
 package com.pl.Project.dao;
 
 import com.pl.Project.entity.Post;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface PostDao extends JpaRepository<Post, Long> {
+public interface PostDao extends CrudRepository<Post, Long> {
 }

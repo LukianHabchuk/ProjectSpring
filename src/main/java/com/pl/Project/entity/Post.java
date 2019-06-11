@@ -6,21 +6,31 @@ import javax.persistence.*;
 public class Post {
     @Id
     @Column(name = "id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
     private String author;
     private double price;
+    private String img;
     private BookGenre genre;
 
     public Post() {
     }
 
-    public Post(String title, String author, double price, BookGenre genre) {
+    public Post(String title, String author, double price, String img, BookGenre genre) {
         this.title = title;
         this.author = author;
         this.price = price;
+        this.img = img;
         this.genre = genre;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public long getId() {

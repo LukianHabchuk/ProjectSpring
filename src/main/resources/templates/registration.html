@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout::head">
 </head>
 <body>
+<h1>its registration page</h1>
+<div th:include="layout :: logpass"></div>
+<div th:include="layout :: navigationPanel"></div>
+
+<div id="signup">
+    <h1>Sign Up for Free</h1>
+
+    <form action="/" method="post">
+
+        <div class="top-row">
+            <div class="field-wrap">
+                <label>
+                    First Name<span class="req">*</span>
+                </label>
+                <input type="text" required autocomplete="off" />
+            </div>
+
+            <div class="field-wrap">
+                <label>
+                    Last Name<span class="req">*</span>
+                </label>
+                <input type="text"required autocomplete="off"/>
+            </div>
+        </div>
+
+        <div class="field-wrap">
+            <label>
+                Email Address<span class="req">*</span>
+            </label>
+            <input type="email"required autocomplete="off"/>
+        </div>
+
+        <div class="field-wrap">
+            <label>
+                Password<span class="req">*</span>
+            </label>
+            <input type="password"required autocomplete="off"/>
+        </div>
+
+        <button type="submit" class="button button-block"/>Get Started</button>
+
+    </form>
+
+</div>
 
 </body>
 </html>

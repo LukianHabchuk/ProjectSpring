@@ -1,13 +1,61 @@
-<!DOCTYPE html "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleafspring4-4.dtd">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleafspring4-4.dtd">
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:fragment="head">
     <meta charset="UTF-8">
     <title>Project application</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=PT+Sans+Caption');
+        .menu-main {
+            list-style: none;
+            padding: 0 30px;
+            margin: 0;
+            font-size: 18px;
+            text-align: center;
+            position: relative;
+            background: white;
+        }
+        .menu-main li {display: inline-block;}
+        .menu-main a {
+            text-decoration: none;
+            display: inline-block;
+            margin: 0 15px;
+            padding: 10px 30px;
+            font-family: 'PT Sans Caption', sans-serif;
+            color: #777777;
+            transition: .3s linear;
+            position: relative;
+        }
+        .tab-group li {
+            display: inline-block;
+            font-family: 'PT Sans Caption', sans-serif;
+        }
+    </style>
 </head>
 <body>
+
+<div th:fragment="logpass">
+    <ul class="tab-group">
+        <li class="tab active"><a href="registration.html">Sign Up</a></li>
+        <li class="tab"><a href="login.html">Log In</a></li>
+    </ul>
+</div>
+
+<div th:fragment="navigationPanel">
+    <nav class="nav">
+        <ul class="menu-main">
+            <li><a href="main.html" >Home</a></li>
+            <li><a href="store.html">Store</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</div>
 
 </body>
 </html>
