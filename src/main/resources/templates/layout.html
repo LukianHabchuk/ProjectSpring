@@ -5,6 +5,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Project application</title>
     <link rel="stylesheet" href="/static/style.css">
     <style>
@@ -39,22 +40,114 @@
 
 <div th:fragment="logpass">
     <ul class="tab-group">
-        <li class="tab active"><a href="registration.html">Sign Up</a></li>
-        <li class="tab"><a href="login.html">Log In</a></li>
+        <li sec:authorize="!isAuthenticated()" class="tab active"><a href="registration.html">Sign Up</a></li>
+        <li sec:authorize="!isAuthenticated()" class="tab"><a href="login.html">Log In</a></li>
+        <li sec:authorize="isAuthenticated()" class="tab"><a th:href="@{/logout}">Log out</a></li>
     </ul>
 </div>
 
 <div th:fragment="navigationPanel">
     <nav class="nav">
         <ul class="menu-main">
-            <li><a href="main.html" >Home</a></li>
-            <li><a href="store.html">Store</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="profile.html">Profile</a></li>
-            <li><a href="#">FAQs</a></li>
-            <li><a href="#">Contact</a></li>
+            <li sec:authorize="!isAuthenticated()"><a href="main.html" >Home</a></li>
+            <li sec:authorize="!isAuthenticated()"><a href="store.html">Store</a></li>
+            <li sec:authorize="!isAuthenticated()"><a href="about.html">About</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="profile.html">Profile</a></li>
+            <li sec:authorize="!isAuthenticated()"><a href="faqs.html">FAQs</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
+</div>
+
+<div th:fragment="postform">
+
+    <form action="@{/createpost}" method="post" th:object="${newpost}">
+
+        <div class="top-row">
+            <div class="field-wrap">
+                <label>
+                    Title<span class="req">*</span>
+                </label>
+                <input type="text" th:field="*{title}" placeholder="title" />
+            </div>
+
+            <div class="field-wrap">
+                <label>
+                    Author<span class="req">*</span>
+                </label>
+                <input type="text" th:field="*{author}" placeholder="author"/>
+            </div>
+            <div class="field-wrap">
+                <label>
+                    Price<span class="req">*</span>
+                </label>
+                <input type="text" th:field="*{price}" placeholder="price"/>
+            </div>
+        </div>
+
+        <div class="field-wrap">
+            <label>
+                Img<span class="req">*</span>
+            </label>
+            <input type="email" th:field="*{img}" placeholder="img"/>
+        </div>
+
+        <div class="field-wrap">
+            <label>
+                Genre<span class="req">*</span>
+            </label>
+            <input type="password" th:field="*{genre}" placeholder="genre"/>
+        </div>
+
+        <button type="submit" class="button button-block"/>Apply</button>
+
+    </form>
+</div>
+
+<div th:fragment="userform">
+    <h1>Sign Up for Free</h1>
+
+    <form action="@{/register}" method="post" th:object="${userForm}">
+
+        <div class="top-row">
+            <div class="field-wrap">
+                <label>
+                    Name<span class="req">*</span>
+                </label>
+                <input type="text" th:field="*{name}" placeholder="Imię" />
+            </div>
+
+            <div class="field-wrap">
+                <label>
+                    Surname<span class="req">*</span>
+                </label>
+                <input type="text" th:field="*{surName}" placeholder="Nazwisko"/>
+            </div>
+            <div class="field-wrap">
+                <label>
+                    Age<span class="req">*</span>
+                </label>
+                <input type="text" th:field="*{age}" placeholder="Wiek"/>
+            </div>
+        </div>
+
+        <div class="field-wrap">
+            <label>
+                Email<span class="req">*</span>
+            </label>
+            <input type="email" th:field="*{email}" placeholder="Email"/>
+        </div>
+
+        <div class="field-wrap">
+            <label>
+                Password<span class="req">*</span>
+            </label>
+            <input type="password" th:field="*{password}" placeholder="Hasło"/>
+        </div>
+
+        <button type="submit" class="button button-block"/>Apply</button>
+
+    </form>
 </div>
 
 </body>

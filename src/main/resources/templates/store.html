@@ -7,36 +7,11 @@
 <div th:include="layout :: logpass"></div>
 <div th:include="layout :: navigationPanel"></div>
 
-<div id="sidebar">
-    <h3>Categories</h3>
-    <ul class="sidebar_menu">
-        <li><a href="#">ActionAndAdventure</a></li>
-        <li><a href="#">Anthology</a></li>
-        <li><a href="#">Classic</a></li>
-        <li><a href="#">ComicAndGraphicNovel</a></li>
-        <li><a href="#">CrimeAndDetective</a></li>
-        <li><a href="#">Drama</a></li>
-        <li><a href="#">Fable</a></li>
-        <li><a href="#">FairyTale</a></li>
-        <li><a href="#">FanFiction</a></li>
-        <li><a href="#">Fantasy</a></li>
-        <li><a href="#">HistoricalFiction</a></li>
-        <li><a href="#">Horror</a></li>
-        <li><a href="#">Humor</a></li>
-        <li><a href="#">Legend</a></li>
-        <li><a href="#">MagicalRealism</a></li>
-        <li><a href="#">Mystery</a></li>
-        <li><a href="#">Mythology</a></li>
-        <li><a href="#">RealisticFiction</a></li>
-        <li><a href="#">Romance</a></li>
-        <li><a href="#">Satire</a></li>
-        <li><a href="#">ScienceFiction</a></li>
-        <li><a href="#">ShortStory</a></li>
-        <li><a href="#">SuspenseThriller</a></li>
-    </ul>
+<div th:if="${#lists.isEmpty(storelist)}">
+    Brak danych w bazie danych...
 </div>
 
-<table th:if="${!#lists.isEmpty(store)}">
+<table th:if="${!#lists.isEmpty(storelist)}">
     <thead>
     <tr>
         <th>ID</th>
@@ -49,20 +24,22 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="product: ${store}">
+    <tr th:each="product: ${storelist}">
         <td th:text="${product.getId()}"></td>
-        <td th:text="${product.getTitle()}"></td>
-        <td th:text="${product.getAuthor()}"></td>
-        <td th:text="${product.getPrice()}"></td>
-        <td th:text="${product.getImg()}"></td>
-        <td th:text="${product.getGenre()}"></td>
+        <td th:text="${product.title}"></td>
+        <td th:text="${product.author}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.img}"></td>
+        <td th:text="${product.genre}"></td>
         <td>
-            <a href="postdetails.html">Details</a>
+            <a th:href="@{/postdetails.html/__${product.getId()}__}">Details</a>
         </td>
     </tr>
 
     </tbody>
 </table>
+
+<button th:href="">Add new post</button>
 
 </body>
 </html>

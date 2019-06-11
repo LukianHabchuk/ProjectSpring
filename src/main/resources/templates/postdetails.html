@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:include="layout::head">
 </head>
 <body>
@@ -8,26 +8,22 @@
 <div th:include="layout :: navigationPanel"></div>
 
 <h2>Product Details</h2>
-<div class="col col_13">
-    <a  rel="lightbox[portfolio]" href="images/product/10_l.jpg" title="Lady Shoes"><img src="images/product/10.jpg" alt="Image 10" /></a>
-</div><!--picture-->
-<div class="col col_13 no_margin_right">
+<div th:if="${!#lists.isEmpty(post)}">
     <table>
         <tr>
-            <td height="30" width="160">Title:</td>
-            <td>$100</td>
+            <td th:text="'Img: '+${post.img}"></td>
         </tr>
         <tr>
-            <td height="30">Author:</td>
-            <td>In Stock</td>
+            <td th:text="'Title: '+${post.title}"></td>
         </tr>
         <tr>
-            <td height="30">Genre:</td>
-            <td>Product 14</td>
+            <td th:text="'Author: '+${post.author}"></td>
         </tr>
         <tr>
-            <td height="30">Price:</td>
-            <td th:text=""></td>
+            <td th:text="'Genre: '+${post.genre}"></td>
+        </tr>
+        <tr>
+            <td th:text="'Price: '+${post.price}"></td>
         </tr>
     </table>
 </div>
