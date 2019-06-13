@@ -14,13 +14,13 @@
 <table th:if="${!#lists.isEmpty(storelist)}">
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Price</th>
-        <th>Img</th>
-        <th>Genre</th>
-        <th>Details</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -28,9 +28,11 @@
         <td th:text="${product.getId()}"></td>
         <td th:text="${product.title}"></td>
         <td th:text="${product.author}"></td>
-        <td th:text="${product.price}"></td>
-        <td th:text="${product.img}"></td>
         <td th:text="${product.genre}"></td>
+        <td >
+            <img style="width: 220px; height: 330px" th:src="${product.img}"/>
+        </td>
+        <td th:text="${product.price}">$</td>
         <td>
             <a th:href="@{/postdetails.html/__${product.getId()}__}">Details</a>
         </td>
@@ -39,7 +41,8 @@
     </tbody>
 </table>
 
-<button th:href="">Add new post</button>
+<a href="createpost.html">Create post</a>
+
 
 </body>
 </html>

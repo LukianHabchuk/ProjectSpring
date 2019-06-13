@@ -2,10 +2,12 @@ package com.pl.Project.controller;
 
 import com.pl.Project.dao.PostDao;
 import com.pl.Project.dao.UserDao;
+import com.pl.Project.entity.BookGenre;
 import com.pl.Project.entity.Post;
 import com.pl.Project.entity.User;
 import com.pl.Project.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +28,7 @@ public class MainController {
 //    private PasswordEncoder passwordEncoder;
 
 
-    @GetMapping(value = "/login")
+    @GetMapping(value = {"/login","/login.html"})
     public String login() {
         return "login";
     }
@@ -53,30 +55,16 @@ public class MainController {
         return "main";
     }
 
-
-
-    @GetMapping(value = "/admin")
-    public String admin(Model model) {
-        return "admin";
-    }
-
     @GetMapping(value = {"/store.html", "/store","/postdetails.html/store"})
     public String store(Model model) {
         model.addAttribute("storelist",postDao.findAll());
         return "store";
     }
 
-    @GetMapping(value = "/createpost")
-    public RedirectView postCreate(@RequestBody Post post, Model m) {
-        m.addAttribute("newpost",post);
-        this.postService.addPost(post);
-        return new RedirectView("/store");
-    }
-
     @GetMapping(value = {"/postdetails/{id}","/postdetails.html/{id}"})
     public String postDetails(Model m, @PathVariable Long id) {
         m.addAttribute("post",postDao.findById(id).get());
-        return "postdetails";
+        return "/postdetails";
     }
 
     @GetMapping(value = {"/about.html","/about","/postdetails.html/abot"})
@@ -99,4 +87,21 @@ public class MainController {
         return "contact";
     }
 
+    @GetMapping(value = {"/createpost.html","/createpost","/createpost.html/contact"})
+    public String createpost(Model model) {
+        return "createpost";
+    }
+
+    @PostMapping(value = {"/createpost.html","/createpost","/createpost.html/contact"})
+    public RedirectView postCreate(@RequestParam("title") String title,
+                                   @RequestParam("author") String author,
+                                   @RequestParam("price") Double price,
+                                   @RequestParam("img") String img,
+                                   @RequestParam("genre") BookGenre genre,
+                                   Model m) {
+        Post p = new Post(title,author,price,img,genre);
+        m.addAttribute("post",p);
+        this.postService.addPost(p);
+        return new RedirectView("store");
+    }
 }

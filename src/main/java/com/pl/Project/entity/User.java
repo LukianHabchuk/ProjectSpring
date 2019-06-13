@@ -10,17 +10,17 @@ public class User {
     private Long id;
     private String name;
     private String surName;
-    private String email;
+    private String login;
     private String password;
     private int age;
 
     public User() {
     }
 
-    public User(String name, String surName, String email, String password, int age) {
+    public User(String name, String surName, String login, String password, int age) {
         this.name = name;
         this.surName = surName;
-        this.email = email;
+        this.login = login;
         this.password = password;
         this.age = age;
     }
@@ -49,12 +49,12 @@ public class User {
         this.surName = surName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getLogin() {
+        return login;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {

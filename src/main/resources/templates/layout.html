@@ -59,29 +59,32 @@
     </nav>
 </div>
 
-<div th:fragment="postform">
-
-    <form action="@{/createpost}" method="post" th:object="${newpost}">
+<div th:fragment="postform" >
+    <form th:action="@{/createpost}" method="post" th:object="${post}">
 
         <div class="top-row">
             <div class="field-wrap">
                 <label>
                     Title<span class="req">*</span>
                 </label>
-                <input type="text" th:field="*{title}" placeholder="title" />
+                <input type="text" name="title"/>
             </div>
 
             <div class="field-wrap">
                 <label>
                     Author<span class="req">*</span>
                 </label>
-                <input type="text" th:field="*{author}" placeholder="author"/>
+                <label>
+                    <input type="text" name="author" />
+                </label>
             </div>
             <div class="field-wrap">
                 <label>
                     Price<span class="req">*</span>
                 </label>
-                <input type="text" th:field="*{price}" placeholder="price"/>
+                <label>
+                    <input type="text" name="price"/>
+                </label>
             </div>
         </div>
 
@@ -89,17 +92,21 @@
             <label>
                 Img<span class="req">*</span>
             </label>
-            <input type="email" th:field="*{img}" placeholder="img"/>
+            <label>
+                <input type="text" name="img"/>
+            </label>
         </div>
 
         <div class="field-wrap">
             <label>
                 Genre<span class="req">*</span>
             </label>
-            <input type="password" th:field="*{genre}" placeholder="genre"/>
+            <label>
+                <input type="text" name="genre"/>
+            </label>
         </div>
 
-        <button type="submit" class="button button-block"/>Apply</button>
+        <button type="submit">Add</button>
 
     </form>
 </div>
@@ -107,7 +114,7 @@
 <div th:fragment="userform">
     <h1>Sign Up for Free</h1>
 
-    <form action="@{/register}" method="post" th:object="${userForm}">
+    <form th:action="@{/register}" method="post" th:object="${userForm}">
 
         <div class="top-row">
             <div class="field-wrap">
@@ -133,9 +140,9 @@
 
         <div class="field-wrap">
             <label>
-                Email<span class="req">*</span>
+                Login<span class="req">*</span>
             </label>
-            <input type="email" th:field="*{email}" placeholder="Email"/>
+            <input type="login" th:field="*{login}" placeholder="Email"/>
         </div>
 
         <div class="field-wrap">

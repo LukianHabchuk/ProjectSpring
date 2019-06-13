@@ -19,15 +19,19 @@ import java.util.List;
 //    @Autowired
 //    private UserDao userDao;
 //
+//    public UserAuthenticationDetails(UserDao userDao){
+//        this.userDao=userDao;
+//    }
+//
 //    @Override
-//    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-//        User user = userDao.findByEmail(email);
+//    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+//        User user = userDao.findByLogin(login);
 //
 //        if(user != null){
 //            List<GrantedAuthority> grupa = new ArrayList<>();
 //            grupa.add(new SimpleGrantedAuthority("normalUser"));
 //            return new org.springframework.security.core.userdetails
-//                    .User(user.getEmail(),user.getPassword(),
+//                    .User(user.getLogin(),user.getPassword(),
 //                    true,true,true,true,grupa);
 //        } else {
 //            throw new UsernameNotFoundException("incorrect login or password");

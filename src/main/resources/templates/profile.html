@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:include="layout::head">
 </head>
 <body>
-<h1>its profile page</h1>
+<h1>The profile page</h1>
 <div th:include="layout :: logpass"></div>
 <div th:include="layout :: navigationPanel"></div>
 
-<form method="post" th:object="${userForm}">
+<form method="post" th:if="${!#lists.isEmpty(userForm)}">
 
     <div class="top-row">
-        < class="field-wrap">
+        <div class="field-wrap">
             <label>
                 Name<span class="req">*</span>
             </label>
-            <input type="text" th:field="*{name}" placeholder="Imię" placeholder=""  />
+            <input type="text" th:field="*{name}" placeholder="Imię" />
         </div>
 
         <div class="field-wrap">
@@ -33,9 +33,9 @@
 
     <div class="field-wrap">
         <label>
-            Email<span class="req">*</span>
+            Login<span class="req">*</span>
         </label>
-        <input type="email" th:field="*{email}" placeholder="Email"/>
+        <input type="login" th:field="*{login}" placeholder="Email"/>
     </div>
 
     <div class="field-wrap">

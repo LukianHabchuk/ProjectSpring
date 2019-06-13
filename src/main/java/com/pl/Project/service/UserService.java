@@ -28,11 +28,11 @@ public class UserService {
         this.userDao.save(user);
     }
 
-    public void updateUser(Long id, String name, String surName, String email, int age){
+    public void updateUser(Long id, String name, String surName, String login, int age){
         User user = this.userDao.findById(id).get();
         user.setName(name);
         user.setSurName(surName);
-        user.setEmail(email);
+        user.setLogin(login);
         user.setAge(age);
         this.userDao.save(user);
     }
