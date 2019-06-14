@@ -13,29 +13,29 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Component
-//public class UserAuthenticationDetails implements UserDetailsService {
-//
-//    @Autowired
-//    private UserDao userDao;
-//
+@Component
+public class UserAuthenticationDetails implements UserDetailsService {
+
+    @Autowired
+    private UserDao userDao;
+
 //    @Autowired
 //    public UserAuthenticationDetails(UserDao userDao){
 //        this.userDao=userDao;
 //    }
-//
-//    @Override
-//    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-//        User user = this.userDao.findByLogin(login);
-//
-//        if(user != null){
-//            List<GrantedAuthority> grupa = new ArrayList<>();
-//            grupa.add(new SimpleGrantedAuthority("normalUser"));
-//            return new org.springframework.security.core.userdetails
-//                    .User(user.getLogin(),user.getPassword(),
-//                    true,true,true,true,grupa);
-//        } else {
-//            throw new UsernameNotFoundException("incorrect login or password");
-//        }
-//    }
-//}
+
+    @Override
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        User user = this.userDao.findByLogin(login);
+
+        if(user != null){
+            List<GrantedAuthority> grupa = new ArrayList<>();
+            grupa.add(new SimpleGrantedAuthority("normalUser"));
+            return new org.springframework.security.core.userdetails
+                    .User(user.getLogin(),user.getPassword(),
+                    true,true,true,true,grupa);
+        } else {
+            throw new UsernameNotFoundException("incorrect login or password");
+        }
+    }
+}

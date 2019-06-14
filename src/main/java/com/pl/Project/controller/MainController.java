@@ -8,6 +8,7 @@ import com.pl.Project.entity.User;
 import com.pl.Project.service.PostService;
 import com.pl.Project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +27,8 @@ public class MainController {
     private PostService postService;
     @Autowired
     private UserService userService;
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     @GetMapping(value = {"/login","/login.html"})
@@ -53,7 +54,7 @@ public class MainController {
         for(User u : users){
             if(u.equals(user)) return "redirect:/registration";
         }
-//        user.setPassword(passwordEncoder.encode(password));
+        user.setPassword(passwordEncoder.encode(password));
         m.addAttribute("userForm",user);
         this.userService.addUser(user);
         return "redirect:/login";
