@@ -6,8 +6,8 @@ import com.pl.Project.entity.BookGenre;
 import com.pl.Project.entity.Post;
 import com.pl.Project.entity.User;
 import com.pl.Project.service.PostService;
+import com.pl.Project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +24,8 @@ public class MainController {
     private UserDao userDao;
     @Autowired
     private PostService postService;
+    @Autowired
+    private UserService userService;
 //    @Autowired
 //    private PasswordEncoder passwordEncoder;
 
@@ -33,20 +35,27 @@ public class MainController {
         return "login";
     }
 
-    @GetMapping("/registration")
+    @GetMapping(value = {"/login?succes","/login.html?succes"})
+    public String loginSucces() {
+        return "main";
+    }
+
+    @GetMapping({"/registration","registration.html"})
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
         return "registration";
     }
 
-    @PostMapping("/registration")
-    public String registration(@ModelAttribute("userForm") User userForm) {
+    @PostMapping({"/registration","registration.html"})
+    public String registration(@RequestParam String name, @RequestParam String surname, @RequestParam int age, @RequestParam String login, @RequestParam String password, Model m) {
         List<User> users = userDao.findAll();
+        User user = new User(name,surname,login,password,age);
         for(User u : users){
-            if(u.equals(userForm)) return "redirect:/registration";
+            if(u.equals(user)) return "redirect:/registration";
         }
-//        userForm.setPassword(passwordEncoder.encode(userForm.getPassword()));
-        userDao.save(userForm);
+//        user.setPassword(passwordEncoder.encode(password));
+        m.addAttribute("userForm",user);
+        this.userService.addUser(user);
         return "redirect:/login";
     }
 
@@ -65,6 +74,25 @@ public class MainController {
     public String postDetails(Model m, @PathVariable Long id) {
         m.addAttribute("post",postDao.findById(id).get());
         return "/postdetails";
+    }
+
+    @GetMapping(value = {"/updatepost/{id}","/updatepost.html/{id}"})
+    public String updatePost(Model m, @PathVariable Long id) {
+        m.addAttribute("post",postDao.findById(id).get());
+        return "/updatepost";
+    }
+
+    @PostMapping(value = {"/updatepost.html","/updatepost"})
+    public RedirectView updatePost(@RequestParam("title") String title,
+                                   @RequestParam("author") String author,
+                                   @RequestParam("price") Double price,
+                                   @RequestParam("img") String img,
+                                   @RequestParam("genre") BookGenre genre,
+                                   @RequestParam("id") Long id,
+                                   Model m) {
+        this.postService.updatePost(id,title,author,price,img,genre,m);
+
+        return new RedirectView("store");
     }
 
     @GetMapping(value = {"/about.html","/about","/postdetails.html/abot"})
@@ -104,4 +132,13 @@ public class MainController {
         this.postService.addPost(p);
         return new RedirectView("store");
     }
+
+    @GetMapping(value = {"/deletepost.html/{id}","/deletepost/{id}","/deletepost.html/contact/{id}"})
+    public String deletepost(@PathVariable("id") String id, Model model)
+    {
+
+        this.postService.deletePost(Long.decode(id));
+        return "redirect:/store";
+    }
+
 }

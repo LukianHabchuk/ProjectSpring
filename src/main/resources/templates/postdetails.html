@@ -11,7 +11,7 @@
 <div th:if="${!#lists.isEmpty(post)}">
     <table>
         <tr>
-            <td th:text="'Img: '+${post.img}"></td>
+            <img style="width: 440px; height: 660px" th:src="${post.img}"/>
         </tr>
         <tr>
             <td th:text="'Title: '+${post.title}"></td>
@@ -27,6 +27,8 @@
         </tr>
     </table>
 </div>
+
+
 
 </body>
 </html>

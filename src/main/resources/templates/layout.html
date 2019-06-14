@@ -67,7 +67,9 @@
                 <label>
                     Title<span class="req">*</span>
                 </label>
-                <input type="text" name="title"/>
+                <label>
+                    <input type="text" name="title"/>
+                </label>
             </div>
 
             <div class="field-wrap">
@@ -112,29 +114,34 @@
 </div>
 
 <div th:fragment="userform">
-    <h1>Sign Up for Free</h1>
 
-    <form th:action="@{/register}" method="post" th:object="${userForm}">
+    <form th:action="@{/registration}" method="post" th:object="${userForm}">
 
         <div class="top-row">
             <div class="field-wrap">
                 <label>
                     Name<span class="req">*</span>
                 </label>
-                <input type="text" th:field="*{name}" placeholder="Imię" />
+                <label>
+                    <input type="text" name="name" placeholder="Imię" />
+                </label>
             </div>
 
             <div class="field-wrap">
                 <label>
                     Surname<span class="req">*</span>
                 </label>
-                <input type="text" th:field="*{surName}" placeholder="Nazwisko"/>
+                <label>
+                    <input type="text" name="surname" placeholder="Nazwisko"/>
+                </label>
             </div>
             <div class="field-wrap">
                 <label>
                     Age<span class="req">*</span>
                 </label>
-                <input type="text" th:field="*{age}" placeholder="Wiek"/>
+                <label>
+                    <input type="text" name="age" placeholder="Wiek"/>
+                </label>
             </div>
         </div>
 
@@ -142,17 +149,21 @@
             <label>
                 Login<span class="req">*</span>
             </label>
-            <input type="login" th:field="*{login}" placeholder="Email"/>
+            <label>
+                <input type="text" name="login" placeholder="Email"/>
+            </label>
         </div>
 
         <div class="field-wrap">
             <label>
                 Password<span class="req">*</span>
             </label>
-            <input type="password" th:field="*{password}" placeholder="Hasło"/>
+            <label>
+                <input type="password" name="password" placeholder="Hasło"/>
+            </label>
         </div>
 
-        <button type="submit" class="button button-block"/>Apply</button>
+        <button type="submit">Apply</button>
 
     </form>
 </div>

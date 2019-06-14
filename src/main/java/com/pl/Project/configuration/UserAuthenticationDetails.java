@@ -19,13 +19,14 @@ import java.util.List;
 //    @Autowired
 //    private UserDao userDao;
 //
+//    @Autowired
 //    public UserAuthenticationDetails(UserDao userDao){
 //        this.userDao=userDao;
 //    }
 //
 //    @Override
 //    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-//        User user = userDao.findByLogin(login);
+//        User user = this.userDao.findByLogin(login);
 //
 //        if(user != null){
 //            List<GrantedAuthority> grupa = new ArrayList<>();

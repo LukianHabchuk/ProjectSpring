@@ -21,6 +21,8 @@
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -32,9 +34,15 @@
         <td >
             <img style="width: 220px; height: 330px" th:src="${product.img}"/>
         </td>
-        <td th:text="${product.price}">$</td>
+        <td th:text="${product.price}+'$'"></td>
         <td>
             <a th:href="@{/postdetails.html/__${product.getId()}__}">Details</a>
+        </td>
+        <td>
+            <a th:href="@{/updatepost/__${product.getId()}__}">Update</a>
+        </td>
+        <td>
+            <a th:href="@{/deletepost/__${product.getId()}__}">Delete</a>
         </td>
     </tr>
 
@@ -42,7 +50,6 @@
 </table>
 
 <a href="createpost.html">Create post</a>
-
 
 </body>
 </html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout::head">
+</head>
+<body>
+<h1>its post details page</h1>
+<div th:include="layout :: logpass"></div>
+<div th:include="layout :: navigationPanel"></div>
+
+
+
+<div >
+    <form th:action="@{/updatepost}" method="post" th:object="${post}">
+
+        <div class="top-row">
+            <div class="field-wrap">
+                <label >
+                    Id<span >*</span>
+                </label>
+                <label>
+                    <input type="number" name="id" th:text="${post.id}"/>
+                </label>
+            </div>
+
+            <div class="top-row">
+                <div class="field-wrap">
+                    <label>
+                        Title<span class="req">*</span>
+                    </label>
+                    <label>
+                        <input type="text" name="title" th:text="${post.title}"/>
+                    </label>
+                </div>
+
+                <div class="field-wrap">
+                    <label>
+                        Author<span class="req">*</span>
+                    </label>
+                    <label>
+                        <input type="text" name="author" th:text="${post.author}"/>
+                    </label>
+                </div>
+                <div class="field-wrap">
+                    <label>
+                        Price<span class="req">*</span>
+                    </label>
+                    <label>
+                        <input type="text" name="price" th:text="${post.price}"/>
+                    </label>
+                </div>
+            </div>
+
+            <div class="field-wrap">
+                <label>
+                    Img<span class="req">*</span>
+                </label>
+                <label>
+                    <input type="text" name="img" th:text="${post.img}"/>
+                </label>
+            </div>
+
+            <div class="field-wrap">
+                <label>
+                    Genre<span class="req">*</span>
+                </label>
+                <label>
+                    <input type="text" name="genre" th:text="${post.genre}"/>
+                </label>
+            </div>
+
+            <button type="submit">Update</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

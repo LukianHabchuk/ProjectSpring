@@ -7,6 +7,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -43,25 +44,24 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 //        http
 //                .csrf().disable()
 //                .authorizeRequests()
-//                .antMatchers("/registration").permitAll()
-//                .antMatchers("/about").permitAll()
-//                .antMatchers("/contact").permitAll()
-//                .antMatchers("/faqs").permitAll()
-//                .antMatchers("/store").permitAll()
+//                .antMatchers("/registration.html").permitAll()
+//                .antMatchers("/about.html").permitAll()
+//                .antMatchers("/main.html").permitAll()
+//                .antMatchers("/faqs.html").permitAll()
+//                .antMatchers("/store.html").permitAll()
 //                .anyRequest().authenticated()
 //                .and()
 //                .formLogin()
 //                .loginProcessingUrl("/login")
-//                .loginPage("login").permitAll()
+//                .loginPage("/login").permitAll()
 //                .usernameParameter("login")
 //                .passwordParameter("password")
+//                .defaultSuccessUrl("/main.html",true).permitAll()
 //                .and()
 //                .logout()
 //                .logoutUrl("/logout")
-//                .invalidateHttpSession(true)
-//                .clearAuthentication(true)
-//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//                .logoutSuccessUrl("/login").permitAll();
+//                .logoutSuccessUrl("/login")
+//                .invalidateHttpSession(true);
 //    }
 //
 //}
