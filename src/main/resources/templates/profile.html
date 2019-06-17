@@ -7,8 +7,54 @@
 <div th:include="layout :: logpass"></div>
 <div th:include="layout :: navigationPanel"></div>
 
-<form th:action="@{/profile}" method="post" th:object="${userForm}">
-    <div th:include="layout :: userform"></div>
+<form th:action="@{/profile}" method="post" th:object="${curentuser}">
+        <div class="top-row">
+            <div class="field-wrap">
+                <label>
+                    Name<span class="req">*</span>
+                </label>
+                <label>
+                    <input type="text" name="name" th:text="${'old name: '+curentuser.name}" />
+                </label>
+            </div>
+
+            <div class="field-wrap">
+                <label>
+                    Surname<span class="req">*</span>
+                </label>
+                <label>
+                    <input type="text" name="surname" th:text="${'old surname: '+curentuser.surName}"/>
+                </label>
+            </div>
+            <div class="field-wrap">
+                <label>
+                    Age<span class="req">*</span>
+                </label>
+                <label>
+                    <input type="text" name="age" th:text="${'old age: '+curentuser.age}"/>
+                </label>
+            </div>
+        </div>
+
+        <div class="field-wrap">
+            <label>
+                Login<span class="req">*</span>
+            </label>
+            <label>
+                <input type="text" name="login" th:text="${'old login: '+curentuser.login}"/>
+            </label>
+        </div>
+
+        <div class="field-wrap">
+            <label>
+                Password<span class="req">*</span>
+            </label>
+            <label>
+                <input type="password" name="password" th:text="${'old encoded password: '+curentuser.password}"/>
+            </label>
+        </div>
+
+        <button type="submit">Apply</button>
 </form>
 
 </body>

@@ -11,43 +11,43 @@
     Brak danych w bazie danych...
 </div>
 
-<table th:if="${!#lists.isEmpty(storelist)}">
-    <thead>
-    <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="product: ${storelist}">
-        <td th:text="${product.getId()}"></td>
-        <td th:text="${product.title}"></td>
-        <td th:text="${product.author}"></td>
-        <td th:text="${product.genre}"></td>
-        <td >
-            <img style="width: 220px; height: 330px" th:src="${product.img}"/>
-        </td>
-        <td th:text="${product.price}+'$'"></td>
-        <td>
-            <a th:href="@{/postdetails.html/__${product.getId()}__}">Details</a>
-        </td>
-        <td>
-            <a th:href="@{/updatepost/__${product.getId()}__}">Update</a>
-        </td>
-        <td>
-            <a th:href="@{/deletepost/__${product.getId()}__}">Delete</a>
-        </td>
-    </tr>
+<div style="margin-left: 300px; margin-bottom: 80px" th:each="product: ${storelist}">
+    <h2>Products</h2>
 
-    </tbody>
-</table>
+    <div>
+        <img style="width: 220px; height: 330px" th:src="${product.img}"/>
+    </div><!--picture-->
+    <div>
+        <table>
+            <tr>
+                <td height="30">Id:</td>
+                <td th:text="${product.getId()}"></td>
+            </tr>
+            <tr>
+                <td height="30">Title:</td>
+                <td th:text="${product.title}"></td>
+            </tr>
+            <tr>
+                <td height="30">Author:</td>
+                <td th:text="${product.author}"></td>
+            </tr>
+            <tr>
+                <td height="30">Genre:</td>
+                <td th:text="${product.genre}"></td>
+            </tr>
+            <tr>
+                <td>
+                    <a th:href="@{/postdetails.html/__${product.getId()}__}">Details</a>
+                    <a th:href="@{/updatepost/__${product.getId()}__}">Update</a>
+                    <a th:href="@{/deletepost/__${product.getId()}__}">Delete</a>
+                </td>
+            </tr>
+        </table>
+        <div class="cleaner h20"></div>
+        <a href="shoppingcart.html" class="add_to_cart">Add to Cart</a>
+    </div>
+
+</div>
 
 <a href="createpost.html">Create post</a>
 

@@ -18,7 +18,7 @@
                     Id<span >*</span>
                 </label>
                 <label>
-                    <input type="number" name="id" th:text="${post.id}"/>
+                    <input type="number" th:field="*{id}" th:text="${post.id}"/>
                 </label>
             </div>
 
@@ -28,7 +28,7 @@
                         Title<span class="req">*</span>
                     </label>
                     <label>
-                        <input type="text" name="title" th:text="${post.title}"/>
+                        <input type="text" th:field="*{title}" th:text="${post.title}"/>
                     </label>
                 </div>
 
@@ -37,7 +37,7 @@
                         Author<span class="req">*</span>
                     </label>
                     <label>
-                        <input type="text" name="author" th:text="${post.author}"/>
+                        <input type="text" th:field="*{author}" th:text="${post.author}"/>
                     </label>
                 </div>
                 <div class="field-wrap">
@@ -45,7 +45,7 @@
                         Price<span class="req">*</span>
                     </label>
                     <label>
-                        <input type="text" name="price" th:text="${post.price}"/>
+                        <input type="text" th:field="*{price}" th:text="${post.price}"/>
                     </label>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                     Img<span class="req">*</span>
                 </label>
                 <label>
-                    <input type="text" name="img" th:text="${post.img}"/>
+                    <input type="text" th:field="*{img}" th:text="${post.img}"/>
                 </label>
             </div>
 
@@ -64,7 +64,7 @@
                     Genre<span class="req">*</span>
                 </label>
                 <label>
-                    <input type="text" name="genre" th:text="${post.genre}"/>
+                    <input type="text" th:field="*{genre}" th:text="${post.genre}"/>
                 </label>
             </div>
 

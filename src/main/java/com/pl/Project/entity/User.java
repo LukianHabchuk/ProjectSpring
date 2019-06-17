@@ -1,17 +1,25 @@
 package com.pl.Project.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class User {
     @Id
     @Column(name = "id")
     @GeneratedValue
+    @NotNull
     private Long id;
+    @NotNull
     private String name;
+    @NotNull
     private String surName;
+    @NotNull
     private String login;
+    @NotNull
     private String password;
+    @NotNull
     private int age;
 
     public User() {

@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -40,17 +41,13 @@ public class UserController {
     }
 
     @PostMapping({"/registration","registration.html"})
-    public String registration(@RequestParam String name,
-                               @RequestParam String surname,
-                               @RequestParam int age,
-                               @RequestParam String login,
-                               @RequestParam String password, Model m) {
+    public String registration(@ModelAttribute(value = "userForm") User user, Model m) {
+        if(user==null) return "/registration";
         List<User> users = userDao.findAll();
-        User user = new User(name,surname,login,password,age);
         for(User u : users){
             if(u.equals(user)) return "redirect:/registration";
-        }
-        user.setPassword(passwordEncoder.encode(password));
+    }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         m.addAttribute("userForm",user);
         this.userService.addUser(user);
         return "redirect:/login";

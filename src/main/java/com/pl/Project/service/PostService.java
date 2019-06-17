@@ -30,14 +30,12 @@ public class PostService {
         this.postDao.save(post);
     }
 
-    public void updatePost(Long id, String title, String author, double price, String img, BookGenre genre, Model m){
-        Post post = this.postDao.findById(id).get();
-        if(title!=null)         post.setTitle(title); else post.setTitle(this.postDao.findById(id).get().getTitle());
-        if(author!=null)        post.setAuthor(author); else post.setAuthor(this.postDao.findById(id).get().getAuthor());
-        if(price!=0l)        post.setPrice(price); else post.setPrice(this.postDao.findById(id).get().getPrice());
-        if(img!=null)        post.setImg(img); else post.setImg(this.postDao.findById(id).get().getImg());
-        if(genre!=null)        post.setGenre(genre); else post.setGenre(this.postDao.findById(id).get().getGenre());
-        this.postDao.save(post);        m.addAttribute("post",post);
+    public void updatePost(Post post, Model m){
+        if(post!=null){
+            this.postDao.save(post);
+            m.addAttribute("post",post);
+        }
+
     }
 
     public void deletePost(Long id){

@@ -6,6 +6,56 @@
 <h1>its create post page</h1>
 <div th:include="layout :: logpass"></div>
 <div th:include="layout :: navigationPanel"></div>
-<div th:include="layout :: postform"></div>
+<form th:action="@{/createpost}" method="post" th:object="${post}">
+
+    <div class="top-row">
+        <div class="field-wrap">
+            <label>
+                Title<span class="req">*</span>
+            </label>
+            <label>
+                <input type="text" th:field="*{title}"/>
+            </label>
+        </div>
+
+        <div class="field-wrap">
+            <label>
+                Author<span class="req">*</span>
+            </label>
+            <label>
+                <input type="text" th:field="*{author}"/>
+            </label>
+        </div>
+        <div class="field-wrap">
+            <label>
+                Price<span class="req">*</span>
+            </label>
+            <label>
+                <input type="text" th:field="*{price}"/>
+            </label>
+        </div>
+    </div>
+
+    <div class="field-wrap">
+        <label>
+            Img<span class="req">*</span>
+        </label>
+        <label>
+            <input type="text" th:field="*{img}"/>
+        </label>
+    </div>
+
+    <div class="field-wrap">
+        <label>
+            Genre<span class="req">*</span>
+        </label>
+        <label>
+            <input type="text" th:field="*{genre}"/>
+        </label>
+    </div>
+
+    <button type="submit">Add</button>
+
+</form>
 </body>
 </html>
