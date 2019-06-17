@@ -7,46 +7,8 @@
 <div th:include="layout :: logpass"></div>
 <div th:include="layout :: navigationPanel"></div>
 
-<form method="post" th:if="${!#lists.isEmpty(userForm)}">
-
-    <div class="top-row">
-        <div class="field-wrap">
-            <label>
-                Name<span class="req">*</span>
-            </label>
-            <input type="text" th:field="*{name}" placeholder="Imię" />
-        </div>
-
-        <div class="field-wrap">
-            <label>
-                Surname<span class="req">*</span>
-            </label>
-            <input type="text" th:field="*{surName}" placeholder="Nazwisko"/>
-        </div>
-        <div class="field-wrap">
-            <label>
-                Age<span class="req">*</span>
-            </label>
-            <input type="text" th:field="*{age}" placeholder="Wiek"/>
-        </div>
-    </div>
-
-    <div class="field-wrap">
-        <label>
-            Login<span class="req">*</span>
-        </label>
-        <input type="login" th:field="*{login}" placeholder="Email"/>
-    </div>
-
-    <div class="field-wrap">
-        <label>
-            Password<span class="req">*</span>
-        </label>
-        <input type="password" th:field="*{password}" placeholder="Hasło"/>
-    </div>
-
-    <button type="submit" class="button button-block"/>Get Started</button>
-
+<form th:action="@{/profile}" method="post" th:object="${userForm}">
+    <div th:include="layout :: userform"></div>
 </form>
 
 </body>

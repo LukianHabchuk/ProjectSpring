@@ -6,7 +6,8 @@
 <h1>its registration page</h1>
 <div th:include="layout :: logpass"></div>
 <div th:include="layout :: navigationPanel"></div>
-<div th:include="layout :: userform"></div>
-
+<form th:action="@{/registration}" method="post" th:object="${userForm}">
+    <div th:include="layout :: userform"></div>
+</form>
 </body>
 </html>

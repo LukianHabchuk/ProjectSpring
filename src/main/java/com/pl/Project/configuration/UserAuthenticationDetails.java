@@ -19,11 +19,6 @@ public class UserAuthenticationDetails implements UserDetailsService {
     @Autowired
     private UserDao userDao;
 
-//    @Autowired
-//    public UserAuthenticationDetails(UserDao userDao){
-//        this.userDao=userDao;
-//    }
-
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         User user = this.userDao.findByLogin(login);

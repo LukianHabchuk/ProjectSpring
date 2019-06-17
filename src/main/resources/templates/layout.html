@@ -113,10 +113,10 @@
     </form>
 </div>
 
-<div th:fragment="userform">
 
-    <form th:action="@{/registration}" method="post" th:object="${userForm}">
 
+
+    <div th:fragment="userform">
         <div class="top-row">
             <div class="field-wrap">
                 <label>
@@ -164,9 +164,8 @@
         </div>
 
         <button type="submit">Apply</button>
+    </div>
 
-    </form>
-</div>
 
 </body>
 </html>
