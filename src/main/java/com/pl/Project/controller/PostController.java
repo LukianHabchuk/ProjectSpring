@@ -18,7 +18,7 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @GetMapping(value = {"postdetails/{id}","postdetails.html{id}"})
+    @GetMapping(value = {"postdetails/{id}","postdetails.html/{id}"})
     public String postDetails(Model m, @PathVariable Long id) {
         m.addAttribute("post",postDao.findById(id).get());
         return "postdetails";
@@ -31,8 +31,7 @@ public class PostController {
     }
 
     @PostMapping(value = {"/updatepost.html","/updatepost"})
-    public String updatePost(@ModelAttribute(value = "post") Post post,
-                                   Model m) {
+    public String updatePost(@ModelAttribute(value = "post") Post post, Model m) {
         this.postService.updatePost(post,m);
 
         return "redirect:/store";

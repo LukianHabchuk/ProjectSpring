@@ -2,6 +2,7 @@ package com.pl.Project.controller;
 
 import com.pl.Project.dao.PostDao;
 import com.pl.Project.dao.UserDao;
+import com.pl.Project.service.PostService;
 import com.pl.Project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,12 +14,16 @@ import java.security.Principal;
 @Controller
 public class MainController {
 
+    public final String MAINPAGE="http://localhost:8080/main.html";
+
     @Autowired
     private PostDao postDao;
     @Autowired
     private UserDao userDao;
     @Autowired
     private UserService userService;
+    @Autowired
+    private PostService postService;
 
     @GetMapping(value = {"/", "/main.html","/main,","/postdetails.html/main.html"})
     public String welcome() {
@@ -26,10 +31,16 @@ public class MainController {
     }
 
     @GetMapping(value = {"/store.html", "/store","/postdetails.html/store"})
-    public String store(Model model) {
-        model.addAttribute("storelist",postDao.findAll());
+    public String store(Model model, @RequestParam(required = false) String query) {
+        model.addAttribute("storelist",postService.search(query));
         return "store";
     }
+
+//    @PostMapping(value = {"/store.html", "/store","/postdetails.html/store"})
+//    public String store(@RequestParam String query, Model model) {
+//        model.addAttribute("storelist",postService.getPostList());
+//        return "store";
+//    }
 
     @GetMapping(value = {"about.html","about","postdetails.html/about"})
     public String about(Model model) {

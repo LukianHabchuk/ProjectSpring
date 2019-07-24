@@ -11,6 +11,17 @@
     Brak danych w bazie danych...
 </div>
 
+<nav>
+    <div class="nav-wrapper">
+        <form>
+            <div class="input-field">
+                <input name="query" id="search" type="search" required>
+                <button class="label-icon" for="search"><i class="material-icons">search</i></button>
+            </div>
+        </form>
+    </div>
+</nav>
+
 <div style="margin-left: 300px; margin-bottom: 80px" th:each="product: ${storelist}">
     <h2>Products</h2>
 

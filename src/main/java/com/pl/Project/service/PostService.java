@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PostService {
@@ -40,6 +41,15 @@ public class PostService {
 
     public void deletePost(Long id){
         this.postDao.deleteById(id);
+    }
+
+    public List<Post> search(String query) {
+        List<Post> posts = (List<Post>) postDao.findAll();
+        return query != null && !query.isEmpty() ?
+                posts.stream()
+                        .filter(post ->post.getTitle().toLowerCase()
+                        .matches(".*"+query.toLowerCase()+".*"))
+                        .collect(Collectors.toList()) : posts;
     }
 
 }
