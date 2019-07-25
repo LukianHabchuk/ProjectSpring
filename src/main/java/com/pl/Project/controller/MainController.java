@@ -14,10 +14,6 @@ import java.security.Principal;
 @Controller
 public class MainController {
 
-    public final String MAINPAGE="http://localhost:8080/main.html";
-
-    @Autowired
-    private PostDao postDao;
     @Autowired
     private UserDao userDao;
     @Autowired
