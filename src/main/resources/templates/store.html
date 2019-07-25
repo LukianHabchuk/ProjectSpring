@@ -47,6 +47,10 @@
                 <td th:text="${product.genre}"></td>
             </tr>
             <tr>
+                <td height="30">Price:</td>
+                <td th:text="${product.price}"></td>
+            </tr>
+            <tr>
                 <td>
                     <a th:href="@{/postdetails.html/__${product.getId()}__}">Details</a>
                     <a th:href="@{/updatepost/__${product.getId()}__}">Update</a>
@@ -55,7 +59,7 @@
             </tr>
         </table>
         <div class="cleaner h20"></div>
-        <a href="shoppingcart.html" class="add_to_cart">Add to Cart</a>
+        <a th:href="@{/addtocart/__${product.getId()}__}">Add to Cart</a>
     </div>
 
 </div>

@@ -10,52 +10,69 @@
 <form th:action="@{/profile}" method="post" th:object="${curentuser}">
         <div class="top-row">
             <div class="field-wrap">
+                <label th:text="${'Name: ' + curentuser.name}"></label>
                 <label>
-                    Name<span class="req">*</span>
-                </label>
-                <label>
-                    <input type="text" name="name" th:text="${'old name: '+curentuser.name}" />
+                    <input type="text" name="name"  />
                 </label>
             </div>
 
             <div class="field-wrap">
+                <label th:text="${'Surname: ' + curentuser.surName}"></label>
                 <label>
-                    Surname<span class="req">*</span>
-                </label>
-                <label>
-                    <input type="text" name="surname" th:text="${'old surname: '+curentuser.surName}"/>
+                    <input type="text" name="surname" />
                 </label>
             </div>
             <div class="field-wrap">
+                <label th:text="${'Age: ' + curentuser.age}"></label>
                 <label>
-                    Age<span class="req">*</span>
-                </label>
-                <label>
-                    <input type="text" name="age" th:text="${'old age: '+curentuser.age}"/>
+                    <input type="text" name="age" />
                 </label>
             </div>
         </div>
 
         <div class="field-wrap">
+            <label th:text="${'Login: ' + curentuser.login}"></label>
             <label>
-                Login<span class="req">*</span>
-            </label>
-            <label>
-                <input type="text" name="login" th:text="${'old login: '+curentuser.login}"/>
+                <input type="text" name="login" />
             </label>
         </div>
 
         <div class="field-wrap">
+            <label th:text="${'Password: '}"> </label>
             <label>
-                Password<span class="req">*</span>
-            </label>
-            <label>
-                <input type="password" name="password" th:text="${'old encoded password: '+curentuser.password}"/>
+                <input type="password" name="password" />
             </label>
         </div>
 
         <button type="submit">Apply</button>
 </form>
+
+<div th:if="${#lists.isEmpty(cart)}">
+    There is no books in your cart...
+</div>
+
+<div style="margin-left: 300px; margin-bottom: 80px" th:each="post,total : ${cart}">
+    <h2>Your cart list: </h2>
+    <table>
+        <tr>
+            <img style="width: 220px; height: 330px" th:src="${post.img}"/>
+        </tr>
+        <tr>
+            <td th:text="'Title: '+${post.title}"></td>
+        </tr>
+        <tr>
+            <td th:text="'Author: '+${post.author}"></td>
+        </tr>
+        <tr>
+            <td th:text="'Genre: '+${post.genre}"></td>
+        </tr>
+        <tr>
+            <td th:text="'Price: '+${post.price}"></td>
+        </tr>
+    </table>
+
+
+</div>
 
 </body>
 </html>

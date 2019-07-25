@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.security.Principal;
+
 @Controller
 public class PostController {
 
@@ -55,6 +57,13 @@ public class PostController {
     public String deletepost(@PathVariable("id") String id, Model model) {
 
         this.postService.deletePost(Long.decode(id));
+        return "redirect:/store";
+    }
+
+    @GetMapping(value = {"/addtocart.html/{id}","/addtocart/{id}","/addtocart.html/contact/{id}"})
+    public String addtocart(@PathVariable("id") String id, Principal principal, Model model) {
+
+        this.postService.addtocart(Long.decode(id), principal, model);
         return "redirect:/store";
     }
 

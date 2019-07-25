@@ -20,7 +20,7 @@ public class UserService {
 
     public List<User> getUserList(){
         List<User> users = new ArrayList<>();
-        this.userDao.findAll().forEach(users::add);
+        users.addAll(this.userDao.findAll());
         return users;
     }
 
@@ -34,11 +34,11 @@ public class UserService {
 
     public void updateUser(Long id, String name, String surName, String login, String password, int age, Model model){
         User user = userDao.findById(id).get();
-        if(!name.isEmpty() && name !=null) user.setName(name);
-        if(!surName.isEmpty() && surName!=null) user.setSurName(surName);
-        if(!login.isEmpty() && login!=null) user.setLogin(login);
-        if(!password.isEmpty() && password!=null) user.setPassword(passwordEncoder.encode(password));
-        if(!String.valueOf(age).isEmpty() && age!=0 && String.valueOf(age)!=null) user.setAge(age);
+        if(!name.isEmpty()) user.setName(name);
+        if(!surName.isEmpty()) user.setSurName(surName);
+        if(!login.isEmpty()) user.setLogin(login);
+        if(!password.isEmpty()) user.setPassword(passwordEncoder.encode(password));
+        if(!String.valueOf(age).isEmpty() && age != 0) user.setAge(age);
         this.userDao.save(user);
         model.addAttribute("user",user);
     }

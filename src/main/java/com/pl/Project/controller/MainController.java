@@ -46,6 +46,7 @@ public class MainController {
     @GetMapping(value = {"/profile.html","/profile","/postdetails.html/profile"})
     public String profile(Model model, Principal principal) {
         model.addAttribute("curentuser",userDao.findByLogin(principal.getName()));
+        model.addAttribute("cart",postService.getCart(userDao.findByLogin(principal.getName())));
         return "profile";
     }
 

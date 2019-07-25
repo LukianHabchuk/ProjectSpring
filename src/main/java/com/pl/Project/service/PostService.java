@@ -1,14 +1,18 @@
 package com.pl.Project.service;
 
 import com.pl.Project.dao.PostDao;
+import com.pl.Project.dao.UserDao;
 import com.pl.Project.entity.BookGenre;
 import com.pl.Project.entity.Post;
+import com.pl.Project.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -16,6 +20,8 @@ public class PostService {
 
     @Autowired
     private PostDao postDao;
+    @Autowired
+    private UserDao userDao;
 
     public List<Post> getPostList(){
         List<Post> posts = new ArrayList<>();
@@ -52,4 +58,14 @@ public class PostService {
                         .collect(Collectors.toList()) : posts;
     }
 
+    public void addtocart(Long id, Principal principal, Model model) {
+        User user = userDao.findByLogin(principal.getName());
+        user.getCart().add(this.postDao.findById(id).get());
+        userDao.save(user);
+        model.addAttribute("cart",user.getCart());
+    }
+
+    public Set<Post> getCart(User user) {
+        return user.getCart();
+    }
 }

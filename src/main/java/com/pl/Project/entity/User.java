@@ -1,28 +1,32 @@
 package com.pl.Project.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 public class User {
     @Id
     @Column(name = "id")
     @GeneratedValue
-    @NotNull
     private Long id;
-    @NotNull
     private String name;
-    @NotNull
     private String surName;
-    @NotNull
     private String login;
-    @NotNull
     private String password;
-    @NotNull
     private int age;
+    @ManyToMany
+    private Set<Post> cart;
 
     public User() {
+    }
+
+    public User(String name, String surName, String login, String password, int age, Set<Post> cart) {
+        this.name = name;
+        this.surName = surName;
+        this.login = login;
+        this.password = password;
+        this.age = age;
+        this.cart = cart;
     }
 
     public User(String name, String surName, String login, String password, int age) {
@@ -79,5 +83,13 @@ public class User {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Set<Post> getCart() {
+        return cart;
+    }
+
+    public void setCart(Set<Post> cart) {
+        this.cart = cart;
     }
 }
