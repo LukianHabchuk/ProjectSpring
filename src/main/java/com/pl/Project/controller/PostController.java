@@ -1,14 +1,11 @@
 package com.pl.Project.controller;
 
-import com.pl.Project.dao.PostDao;
-import com.pl.Project.entity.BookGenre;
 import com.pl.Project.entity.Post;
 import com.pl.Project.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 
@@ -16,19 +13,17 @@ import java.security.Principal;
 public class PostController {
 
     @Autowired
-    private PostDao postDao;
-    @Autowired
     private PostService postService;
 
     @GetMapping(value = {"postdetails/{id}","postdetails.html/{id}"})
     public String postDetails(Model m, @PathVariable Long id) {
-        m.addAttribute("post",postDao.findById(id).get());
+        m.addAttribute("post",postService.getPost(id));
         return "postdetails";
     }
 
     @GetMapping(value = {"/updatepost/{id}","/updatepost.html/{id}"})
     public String updatePost(Model m, @PathVariable Long id) {
-        m.addAttribute("post",postDao.findById(id).get());
+        m.addAttribute("post",postService.getPost(id));
         return "updatepost";
     }
 

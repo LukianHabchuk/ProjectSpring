@@ -25,7 +25,7 @@
             <div class="field-wrap">
                 <label th:text="${'Age: ' + curentuser.age}"></label>
                 <label>
-                    <input type="text" name="age" />
+                    <input type="number" name="age" />
                 </label>
             </div>
         </div>
@@ -47,12 +47,14 @@
         <button type="submit">Apply</button>
 </form>
 
+<h2>Your cart list: </h2>
+
 <div th:if="${#lists.isEmpty(cart)}">
     There is no books in your cart...
 </div>
 
 <div style="margin-left: 300px; margin-bottom: 80px" th:each="post,total : ${cart}">
-    <h2>Your cart list: </h2>
+
     <table>
         <tr>
             <img style="width: 220px; height: 330px" th:src="${post.img}"/>

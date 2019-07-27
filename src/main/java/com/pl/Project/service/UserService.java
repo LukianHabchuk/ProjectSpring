@@ -28,17 +28,25 @@ public class UserService {
         return this.userDao.findById(id).get();
     }
 
+    public User getUser(String login){
+        return this.userDao.findByLogin(login);
+    }
+
     public void addUser(User user){
         this.userDao.save(user);
     }
 
-    public void updateUser(Long id, String name, String surName, String login, String password, int age, Model model){
+    public void updateUser(Long id, String name, String surName, String login, String password, Integer age, Model model){
         User user = userDao.findById(id).get();
         if(!name.isEmpty()) user.setName(name);
         if(!surName.isEmpty()) user.setSurName(surName);
         if(!login.isEmpty()) user.setLogin(login);
         if(!password.isEmpty()) user.setPassword(passwordEncoder.encode(password));
-        if(!String.valueOf(age).isEmpty() && age != 0) user.setAge(age);
+        try{
+            if(age != 0) user.setAge(age);
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
         this.userDao.save(user);
         model.addAttribute("user",user);
     }

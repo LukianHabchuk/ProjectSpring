@@ -1,7 +1,5 @@
 package com.pl.Project.controller;
 
-import com.pl.Project.dao.PostDao;
-import com.pl.Project.dao.UserDao;
 import com.pl.Project.service.PostService;
 import com.pl.Project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +12,6 @@ import java.security.Principal;
 @Controller
 public class MainController {
 
-    @Autowired
-    private UserDao userDao;
     @Autowired
     private UserService userService;
     @Autowired
@@ -32,12 +28,6 @@ public class MainController {
         return "store";
     }
 
-//    @PostMapping(value = {"/store.html", "/store","/postdetails.html/store"})
-//    public String store(@RequestParam String query, Model model) {
-//        model.addAttribute("storelist",postService.getPostList());
-//        return "store";
-//    }
-
     @GetMapping(value = {"about.html","about","postdetails.html/about"})
     public String about(Model model) {
         return "about";
@@ -45,19 +35,19 @@ public class MainController {
 
     @GetMapping(value = {"/profile.html","/profile","/postdetails.html/profile"})
     public String profile(Model model, Principal principal) {
-        model.addAttribute("curentuser",userDao.findByLogin(principal.getName()));
-        model.addAttribute("cart",postService.getCart(userDao.findByLogin(principal.getName())));
+        model.addAttribute("curentuser",userService.getUser(principal.getName()));
+        model.addAttribute("cart",postService.getCart(userService.getUser(principal.getName())));
         return "profile";
     }
 
     @PostMapping(value = {"/profile.html","/profile","/postdetails.html/profile"})
     public String profile(@RequestParam String name,
-                                @RequestParam String surname,
-                                @RequestParam int age,
-                                @RequestParam String login,
-                                @RequestParam String password,
-                                Principal principal, Model model) {
-        userService.updateUser(userDao.findByLogin(principal.getName()).getId(),name,surname,login,password,age,model);
+                          @RequestParam String surname,
+                          @RequestParam Integer age,
+                          @RequestParam String login,
+                          @RequestParam String password,
+                          Principal principal, Model model) {
+        userService.updateUser(userService.getUser(principal.getName()).getId(),name,surname,login,password,age,model);
         return "redirect:/profile";
     }
 

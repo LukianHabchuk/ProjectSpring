@@ -17,8 +17,6 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserDao userDao;
-    @Autowired
     private UserService userService;
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -41,10 +39,10 @@ public class UserController {
 
     @PostMapping({"/registration","registration.html"})
     public String registration(@ModelAttribute(value = "userForm") User user, Model m) {
-        if(user==null) return "/registration";
-        List<User> users = userDao.findAll();
+        if(user==null || user.getAge()==0) return "/registration";
+        List<User> users = userService.getUserList();
         for(User u : users){
-            if(u.equals(user)) return "redirect:/registration";
+            if(u.getLogin().equals(user.getLogin())) return "redirect:/main.html";
     }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         m.addAttribute("userForm",user);
