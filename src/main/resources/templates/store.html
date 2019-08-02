@@ -7,64 +7,71 @@
 <div th:include="layout :: logpass"></div>
 <div th:include="layout :: navigationPanel"></div>
 
-<div th:if="${#lists.isEmpty(storelist)}">
-    Brak danych w bazie danych...
-</div>
-
-<nav>
+<nav style="display: block; text-align: center; margin-top: 30px">
     <div class="nav-wrapper">
         <form>
             <div class="input-field">
-                <input name="query" id="search" type="search" required>
+                <input style="width: 500px" name="query" id="search" type="search" required>
                 <button class="label-icon" for="search"><i class="material-icons">search</i></button>
             </div>
         </form>
     </div>
 </nav>
 
-<div style="margin-left: 300px; margin-bottom: 80px" th:each="product: ${storelist}">
-    <h2>Products</h2>
+<h2>Products</h2>
 
-    <div>
-        <img style="width: 220px; height: 330px" th:src="${product.img}"/>
-    </div><!--picture-->
-    <div>
-        <table>
-            <tr>
-                <td height="30">Id:</td>
-                <td th:text="${product.getId()}"></td>
-            </tr>
-            <tr>
-                <td height="30">Title:</td>
-                <td th:text="${product.title}"></td>
-            </tr>
-            <tr>
-                <td height="30">Author:</td>
-                <td th:text="${product.author}"></td>
-            </tr>
-            <tr>
-                <td height="30">Genre:</td>
-                <td th:text="${product.genre}"></td>
-            </tr>
-            <tr>
-                <td height="30">Price:</td>
-                <td th:text="${product.price}"></td>
-            </tr>
-            <tr>
-                <td>
-                    <a th:href="@{/postdetails.html/__${product.getId()}__}">Details</a>
-                    <a th:href="@{/updatepost/__${product.getId()}__}">Update</a>
-                    <a th:href="@{/deletepost/__${product.getId()}__}">Delete</a>
-                </td>
-            </tr>
-        </table>
-        <div class="cleaner h20"></div>
-        <a th:href="@{/addtocart/__${product.getId()}__}">Add to Cart</a>
-    </div>
-
+<div style=" display: block; text-align: right; margin-right: 100px ">
+    <a  href="createpost.html">Create post</a >
 </div>
 
-<a href="createpost.html">Create post</a>
+<div th:if="${#lists.isEmpty(storelist)}">
+    Brak danych w bazie danych...
+</div>
 
+<div style="margin-left: 300px; margin-bottom: 80px" th:each="product: ${storelist}">
+    <table><tr>
+            <td>
+                    <img style="width: 220px; height: 330px" th:src="${product.img}"/>
+            </td>
+
+            <td>
+                    <table>
+                        <tr>
+                            <td height="30">Id:</td>
+                            <td th:text="${product.getId()}"></td>
+                        </tr>
+                        <tr>
+                            <td height="30">Title:</td>
+                            <td th:text="${product.title}"></td>
+                        </tr>
+                        <tr>
+                            <td height="30">Author:</td>
+                            <td th:text="${product.author}"></td>
+                        </tr>
+                        <tr>
+                            <td height="30">Genre:</td>
+                            <td th:text="${product.genre}"></td>
+                        </tr>
+                        <tr>
+                            <td height="30">Price:</td>
+                            <td th:text="${product.price}"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a th:href="@{/postdetails.html/__${product.getId()}__}">Details</a>
+                                <a th:href="@{/updatepost/__${product.getId()}__}">Update</a>
+                                <a th:href="@{/deletepost/__${product.getId()}__}">Delete</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="cleaner h20"></div>
+                    <a th:href="@{/addtocart/__${product.getId()}__}">Add to Cart</a>
+            </td>
+
+        </tr>
+    </table>
+
+</div>
+<div th:include="layout :: footer"></div>
 </body>
 </html>
