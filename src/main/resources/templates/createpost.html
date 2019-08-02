@@ -50,7 +50,10 @@
             Genre<span class="req">*</span>
         </label>
         <label>
-            <input type="text" th:field="*{genre}"/>
+            <select th:field="*{genre}">
+                <option value="0">select operator</option>
+                <option th:each="genre : ${genres}" th:value="${genre}" th:text="${genres.get(genreStat.index)}" th:type="text"></option>
+            </select>
         </label>
     </div>
 

@@ -1,5 +1,6 @@
 package com.pl.Project.controller;
 
+import com.pl.Project.entity.BookGenre;
 import com.pl.Project.entity.Post;
 import com.pl.Project.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 public class PostController {
@@ -36,13 +39,14 @@ public class PostController {
 
     @GetMapping(value = {"/createpost.html","/createpost","/createpost.html/contact"})
     public String createpost(Model model) {
+        List<BookGenre> bookGenres = Arrays.asList(BookGenre.values());
         model.addAttribute("post",new Post());
+        model.addAttribute("genres",bookGenres);
         return "createpost";
     }
 
     @PostMapping(value = {"/createpost.html","/createpost","/createpost.html/contact"})
-    public String postCreate(@ModelAttribute(value = "post") Post post,
-                                   Model m) {
+    public String postCreate(@ModelAttribute(value = "post") Post post, Model m) {
         m.addAttribute("post",post);
         this.postService.addPost(post);
         return "redirect:/store";

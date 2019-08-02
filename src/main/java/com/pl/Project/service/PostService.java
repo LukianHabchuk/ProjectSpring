@@ -42,7 +42,6 @@ public class PostService {
             this.postDao.save(post);
             m.addAttribute("post",post);
         }
-
     }
 
     public void deletePost(Long id){
