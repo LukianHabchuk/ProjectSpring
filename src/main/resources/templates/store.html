@@ -7,7 +7,7 @@
 <div th:include="layout :: logpass"></div>
 <div th:include="layout :: navigationPanel"></div>
 
-<nav style="display: block; text-align: center; margin-top: 30px">
+<div style="display: block; text-align: center; margin-top: 90px">
     <div class="nav-wrapper">
         <form>
             <div class="input-field">
@@ -16,25 +16,28 @@
             </div>
         </form>
     </div>
-</nav>
+</div>
 
 <h2>Products</h2>
 
 <div style=" display: block; text-align: right; margin-right: 100px ">
-    <a  href="createpost.html">Create post</a >
+    <h3><a  href="createpost.html">Create post</a ></h3>
 </div>
 
 <div th:if="${#lists.isEmpty(storelist)}">
-    Brak danych w bazie danych...
+    No data in the database...
 </div>
 
-<div style="margin-left: 300px; margin-bottom: 80px" th:each="product: ${storelist}">
-    <table><tr>
-            <td>
+<div class="content-section">
+    <div class="conteiner" th:each="product: ${storelist}">
+        <div class="row centered">
+            <br><br>
+            <table class="col-lg-4"><tr>
+                <td>
                     <img style="width: 220px; height: 330px" th:src="${product.img}"/>
-            </td>
+                </td>
 
-            <td>
+                <td>
                     <table>
                         <tr>
                             <td height="30">Id:</td>
@@ -57,21 +60,19 @@
                             <td th:text="${product.price}"></td>
                         </tr>
                         <tr>
-                            <td>
-                                <a th:href="@{/postdetails.html/__${product.getId()}__}">Details</a>
-                                <a th:href="@{/updatepost/__${product.getId()}__}">Update</a>
-                                <a th:href="@{/deletepost/__${product.getId()}__}">Delete</a>
-                            </td>
+                            <td><a th:href="@{/postdetails.html/__${product.getId()}__}">Details</a></td>
+                            <td><a th:href="@{/updatepost/__${product.getId()}__}">Update</a></td>
+                            <td><a th:href="@{/deletepost/__${product.getId()}__}">Delete</a></td>
                         </tr>
                     </table>
-                    <div class="cleaner h20"></div>
-                    <a th:href="@{/addtocart/__${product.getId()}__}">Add to Cart</a>
-            </td>
-
-        </tr>
-    </table>
-
+                <a th:href="@{/addtocart/__${product.getId()}__}"><i class="fa fa-heart"></i></a>
+                </td>
+            </tr>
+            </table>
+        </div>
+    </div>
 </div>
+
 <div th:include="layout :: footer"></div>
 </body>
 </html>

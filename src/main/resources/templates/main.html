@@ -3,24 +3,25 @@
 <head th:include="layout::head">
 </head>
 <body>
-<h1>its main page</h1>
 <div th:include="layout :: logpass"></div>
 <div th:include="layout :: navigationPanel"></div>
 
-<div id="templatemo_middle">
-    <img style="
-    width: 550px;
-    height: 330px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto"
-    src="https://cmkt-image-prd.global.ssl.fastly.net/0.1.0/ps/2466713/910/607/m1/fpnw/wm0/template-for-preview-km-1-.jpg?1490710043&s=48b3da2b880fcec4b36486ed81ab18d2" alt="Image 01" />
-   <div style="text-align: center">
-        <h1>Introducing Web Store</h1>
-        <p>Web Store is a free css template for your personal or commercial websites. Feel free to download, edit and use this template for any purpose.</p>
-        <a href="/main.html" class="buy_now">Browse All Products</a>
-   </div>
-</div> <!-- END of middle -->
+<div id="headerwrap">
+    <div class="container">
+        <div class="row centered">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h1>Introducing Web Store</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                    sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <a href="/store.html" class="buy_now">Browse All Products</a>
+            </div>
+        </div>
+    </div>
+</div><!-- END of middle -->
+
 <div th:include="layout :: footer"></div>
 </body>
 </html>

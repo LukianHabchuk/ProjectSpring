@@ -7,43 +7,39 @@
 <div th:include="layout :: logpass"></div>
 <div th:include="layout :: navigationPanel"></div>
 
-<div class="container">
-    <div style="width:600px;margin-left: auto;margin-right: auto;margin-top:24px;padding: 24px;">
-        <div class="card">
-            <div class="card-header">
-                <i class="fa fa-user">Please Login</i>
-            </div>
-            <div class="card-block" style="padding: 24px;">
+<div class="content-section">
+    <div class="container">
+        <div class="row centered">
+            <h3 class="widget-title">Please Login</h3>
                 <form th:action="@{/login}" method="post">
-                        <!-- Thymeleaf + Spring Security error display -->
-                        <div th:if="${param.error}" class="alert alert-danger">
-                            Invalid username or password.
-                        </div>
+                    <!-- Thymeleaf + Spring Security error display -->
+                    <div th:if="${param.error}" class="alert alert-danger">
+                        Invalid username or password.
+                    </div>
 
-                        <div th:if="${param.logout}" class="alert alert-success">
-                            You have been logged out.
-                        </div>
+                    <div th:if="${param.logout}" class="alert alert-success">
+                        You have been logged out.
+                    </div>
 
-                        <!-- Login Controls -->
-                        <div class="form-group">
-                            <label>Login</label>
-                            <label>
-                                <input type="text" name="login" placeholder="Username">
-                            </label>
-                            <label >Password</label>
-                            <label>
-                                <input type="password" name="password" placeholder="Password">
-                            </label>
-                        </div>
+                    <!-- Login Controls -->
+                    <div class="form-group">
+                        <label>
+                            <input type="text" name="login" placeholder="Username">
+                        </label>
+                        <label>
+                            <input type="password" name="password" placeholder="Password">
+                        </label>
+                    </div>
 
-                        <div style="margin-top: 12px;">
-                            <button type="submit" >Log in</button>
-                        </div>
+                    <div style="margin-top: 12px;">
+                        <button type="submit" >Log in</button>
+                    </div>
                 </form>
-            </div>
         </div>
     </div>
 </div>
+
+
 <div th:include="layout :: footer"></div>
 </body>
 </html>

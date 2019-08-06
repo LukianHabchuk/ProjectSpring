@@ -7,168 +7,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Project application</title>
-    <link rel="stylesheet" href="/static/style.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=PT+Sans+Caption');
-        .menu-main {
-            list-style: none;
-            padding: 0 30px;
-            margin: 0;
-            font-size: 18px;
-            text-align: center;
-            position: relative;
-            background: white;
-        }
-        .menu-main li {display: inline-block;}
-        .menu-main a {
-            text-decoration: none;
-            display: inline-block;
-            margin: 0 15px;
-            padding: 10px 30px;
-            font-family: 'PT Sans Caption', sans-serif;
-            color: #777777;
-            transition: .3s linear;
-            position: relative;
-        }
-        .tab-group li {
-            display: inline-block;
-            font-family: 'PT Sans Caption', sans-serif;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/font-awesome.min.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
 </head>
 <body>
 
 <div th:fragment="logpass">
-    <ul class="tab-group">
-        <li sec:authorize="!isAuthenticated()" class="tab active"><a href="registration.html">Sign Up</a></li>
-        <li sec:authorize="!isAuthenticated()" class="tab"><a href="login.html">Log In</a></li>
-        <li sec:authorize="isAuthenticated()" class="tab"><a th:href="@{/logout}">Log out</a></li>
-    </ul>
+    <div class="conteiner leftTop">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+<!--            <div class="navbar-collapse collapse" >-->
+<!--                <ul class="nav navbar-nav navbar-left">-->
+<!--                    <li sec:authorize="!isAuthenticated()" class="tab active"><a href="registration.html">Sign Up</a></li>-->
+<!--                    <li sec:authorize="!isAuthenticated()" class="tab"><a href="login.html">Log In</a></li>-->
+<!--                    <li sec:authorize="isAuthenticated()" class="tab"><a th:href="@{/logout}">Log out</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+        </div>
+    </div>
 </div>
 
 <div th:fragment="navigationPanel">
-    <nav class="nav">
-        <ul class="menu-main">
-            <li sec:authorize="!isAuthenticated()"><a href="main.html" >Home</a></li>
-            <li sec:authorize="!isAuthenticated()"><a href="store.html">Store</a></li>
-            <li sec:authorize="!isAuthenticated()"><a href="about.html">About</a></li>
-            <li sec:authorize="isAuthenticated()"><a href="profile.html">Profile</a></li>
-            <li sec:authorize="!isAuthenticated()"><a href="faqs.html">FAQs</a></li>
-            <li sec:authorize="isAuthenticated()"><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-</div>
-
-<div th:fragment="postform" >
-    <form th:action="@{/createpost}" method="post" th:object="${post}">
-
-        <div class="top-row">
-            <div class="field-wrap">
-                <label>
-                    Title<span class="req">*</span>
-                </label>
-                <label>
-                    <input type="text" th:field="*{}"/>
-                </label>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-collapse collapse" >
+            <ul class="nav navbar-nav navbar-left">
+                <li sec:authorize="!isAuthenticated()" class="tab active"><a href="registration.html">Sign Up</a></li>
+                <li sec:authorize="!isAuthenticated()" class="tab active"><a href="login.html">Log In</a></li>
+                <li sec:authorize="isAuthenticated()" class="tab active"><a th:href="@{/logout}">Log out</a></li>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="main.html">B<i class="fa fa-circle"></i><i class="fa fa-circle"></i>K ST<i class="fa fa-circle"></i>RE</a>
             </div>
 
-            <div class="field-wrap">
-                <label>
-                    Author<span class="req">*</span>
-                </label>
-                <label>
-                    <input type="text" name="author" />
-                </label>
-            </div>
-            <div class="field-wrap">
-                <label>
-                    Price<span class="req">*</span>
-                </label>
-                <label>
-                    <input type="text" name="price"/>
-                </label>
-            </div>
-        </div>
-
-        <div class="field-wrap">
-            <label>
-                Img<span class="req">*</span>
-            </label>
-            <label>
-                <input type="text" name="img"/>
-            </label>
-        </div>
-
-        <div class="field-wrap">
-            <label>
-                Genre<span class="req">*</span>
-            </label>
-            <label>
-                <input type="text" name="genre"/>
-            </label>
-        </div>
-
-        <button type="submit">Add</button>
-
-    </form>
-</div>
-
-
-
-
-    <div th:fragment="userform">
-        <div class="top-row">
-            <div class="field-wrap">
-                <label>
-                    Name<span class="req">*</span>
-                </label>
-                <label>
-                    <input type="text" name="name" placeholder="Imię" />
-                </label>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active" sec:authorize="!isAuthenticated()"><a href="main.html" >Home</a></li>
+                    <li sec:authorize="!isAuthenticated()"><a href="store.html">Store</a></li>
+                    <li sec:authorize="!isAuthenticated()"><a href="about.html">About</a></li>
+                    <li sec:authorize="isAuthenticated()"><a href="profile.html">Profile</a></li>
+                    <li sec:authorize="!isAuthenticated()"><a href="faqs.html">FAQs</a></li>
+                    <li sec:authorize="isAuthenticated()"><a href="contact.html"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
+                </ul>
             </div>
 
-            <div class="field-wrap">
-                <label>
-                    Surname<span class="req">*</span>
-                </label>
-                <label>
-                    <input type="text" name="surname" placeholder="Nazwisko"/>
-                </label>
-            </div>
-            <div class="field-wrap">
-                <label>
-                    Age<span class="req">*</span>
-                </label>
-                <label>
-                    <input type="text" name="age" placeholder="Wiek"/>
-                </label>
-            </div>
         </div>
-
-        <div class="field-wrap">
-            <label>
-                Login<span class="req">*</span>
-            </label>
-            <label>
-                <input type="text" name="login" placeholder="Email"/>
-            </label>
-        </div>
-
-        <div class="field-wrap">
-            <label>
-                Password<span class="req">*</span>
-            </label>
-            <label>
-                <input type="password" name="password" placeholder="Hasło"/>
-            </label>
-        </div>
-
-        <button type="submit">Apply</button>
     </div>
+</div>
 
 <div th:fragment="footer">
-    <p style="text-shadow: -1px -1px #000,0 1px 0 #444;color: #222;transition: all 1s;">
-        Created by Lukian Hrabchuk</p>
+    <div class="myfooter">
+        <p>Created by Lukian Hrabchuk</p>
+    </div>
 </div>
 
 </body>
