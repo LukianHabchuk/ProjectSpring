@@ -1,5 +1,6 @@
 package com.pl.Project.controller;
 
+import com.pl.Project.entity.User;
 import com.pl.Project.service.PostService;
 import com.pl.Project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class MainController {
@@ -61,6 +63,10 @@ public class MainController {
         return "contact";
     }
 
-
+    @GetMapping(value = {"/users","/users.html"})
+    public String userList(Model model) {
+        model.addAttribute("userlist",userService.getUserList());
+        return "users";
+    }
 
 }

@@ -34,7 +34,10 @@ public class ProjectApplication {
 				"Robert C. Martin",62.99,"https://ecsmedia.pl/c/czysty-kod-podrecznik-dobrego-programisty-b-iext43256635.jpg", BookGenre.ScienceFiction));
 		postDao.save(new Post("1984","George Orwell",20,"https://wordery.com/jackets/6e2f899f/1984-george-orwell-9781432839611.jpg", BookGenre.Classic));
 		postDao.save(new Post("The Book Thief","Markus Zusak",12,"https://images-na.ssl-images-amazon.com/images/I/9123eop9gIL.jpg", BookGenre.FanFiction));
-		userDao.save(new User("name","surname","login",passwordEncoder.encode("password123"),9));
+		userDao.save(new User("name","surname","login",passwordEncoder.encode("password123"),9,"normalUser"));
+		userDao.save(new User("name1","surname1","login1",passwordEncoder.encode("password123"),91,"normalUser"));
+		userDao.save(new User("name2","surname2","login2",passwordEncoder.encode("password123"),92,"normalUser"));
+		userDao.save(new User("admin","admin","admin",passwordEncoder.encode("admin"),69,"admin"));
 	}
 
 }

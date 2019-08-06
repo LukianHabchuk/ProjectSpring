@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.security.Principal;
+
 @Configuration
 public class Security extends WebSecurityConfigurerAdapter {
 
@@ -49,6 +51,7 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .antMatchers("/deletepost/{id}").authenticated()
                 .antMatchers("/addtocart/{id}").authenticated()
                 .antMatchers("/createpost.html").authenticated()
+                .antMatchers("/users","/users.html").hasAuthority("admin")
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()

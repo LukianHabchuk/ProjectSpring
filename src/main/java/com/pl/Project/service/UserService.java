@@ -33,6 +33,7 @@ public class UserService {
     }
 
     public void addUser(User user){
+        user.setRole("normalUser");
         this.userDao.save(user);
     }
 

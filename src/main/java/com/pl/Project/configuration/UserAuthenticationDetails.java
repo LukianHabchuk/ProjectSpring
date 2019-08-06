@@ -26,6 +26,9 @@ public class UserAuthenticationDetails implements UserDetailsService {
         if(user != null){
             List<GrantedAuthority> grupa = new ArrayList<>();
             grupa.add(new SimpleGrantedAuthority("normalUser"));
+
+            if(user.getRole().equals("admin")){ grupa.add(new SimpleGrantedAuthority("admin")); }
+
             return new org.springframework.security.core.userdetails
                     .User(user.getLogin(),user.getPassword(),
                     true,true,true,true,grupa);

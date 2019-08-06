@@ -16,6 +16,7 @@ public class User {
     private int age;
     @ManyToMany
     private Set<Post> cart;
+    private String role;
 
     public User() {
     }
@@ -35,6 +36,15 @@ public class User {
         this.login = login;
         this.password = password;
         this.age = age;
+    }
+
+    public User(String name, String surName, String login, String password, int age,String role) {
+        this.name = name;
+        this.surName = surName;
+        this.login = login;
+        this.password = password;
+        this.age = age;
+        this.role=role;
     }
 
     public Long getId() {
@@ -91,5 +101,13 @@ public class User {
 
     public void setCart(Set<Post> cart) {
         this.cart = cart;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
