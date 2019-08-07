@@ -1,6 +1,7 @@
 package com.pl.Project.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Post {
@@ -13,8 +14,19 @@ public class Post {
     private double price;
     private String img;
     private BookGenre genre;
+    @ManyToMany
+    private List<Comment> commentList;
 
     public Post() {
+    }
+
+    public Post(String title, String author, double price, String img, BookGenre genre, List<Comment> commentList) {
+        this.title = title;
+        this.author = author;
+        this.price = price;
+        this.img = img;
+        this.genre = genre;
+        this.commentList = commentList;
     }
 
     public Post(String title, String author, double price, String img, BookGenre genre) {
@@ -71,5 +83,13 @@ public class Post {
 
     public void setGenre(BookGenre genre) {
         this.genre = genre;
+    }
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
     }
 }

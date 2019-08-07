@@ -2,6 +2,7 @@ package com.pl.Project.controller;
 
 import com.pl.Project.entity.BookGenre;
 import com.pl.Project.entity.Post;
+import com.pl.Project.service.CommentService;
 import com.pl.Project.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,10 +18,13 @@ public class PostController {
 
     @Autowired
     private PostService postService;
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping(value = {"postdetails/{id}","postdetails.html/{id}"})
     public String postDetails(Model m, @PathVariable Long id) {
         m.addAttribute("post",postService.getPost(id));
+        m.addAttribute("comments",commentService.getCommentByPost(id));
         return "postdetails";
     }
 

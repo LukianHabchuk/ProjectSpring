@@ -19,8 +19,7 @@ public class UserService {
     PasswordEncoder passwordEncoder;
 
     public List<User> getUserList(){
-        List<User> users = new ArrayList<>();
-        users.addAll(this.userDao.findAll());
+        List<User> users = new ArrayList<>(this.userDao.findAll());
         return users;
     }
 

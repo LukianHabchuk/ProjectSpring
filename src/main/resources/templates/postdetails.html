@@ -9,23 +9,34 @@
 
 <h2>Product Details</h2>
 <div th:if="${!#lists.isEmpty(post)}">
-    <table>
-        <tr>
-            <img style="width: 440px; height: 660px" th:src="${post.img}"/>
-        </tr>
-        <tr>
-            <td th:text="'Title: '+${post.title}"></td>
-        </tr>
-        <tr>
-            <td th:text="'Author: '+${post.author}"></td>
-        </tr>
-        <tr>
-            <td th:text="'Genre: '+${post.genre}"></td>
-        </tr>
-        <tr>
-            <td th:text="'Price: '+${post.price}"></td>
-        </tr>
-    </table>
+    <div class="row bootstrap snippets">
+        <div class="col-md-6 col-md-offset-2 col-sm-12">
+            <table>
+                <tr>
+                    <img style="width: 440px; height: 660px" th:src="${post.img}"/>
+                </tr>
+                <tr>
+                    <td th:text="'Title: '+${post.title}"></td>
+                </tr>
+                <tr>
+                    <td th:text="'Author: '+${post.author}"></td>
+                </tr>
+                <tr>
+                    <td th:text="'Genre: '+${post.genre}"></td>
+                </tr>
+                <tr>
+                    <td th:text="'Price: '+${post.price}"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div th:each="comment: ${comments}">
+                            <div th:include="layout :: commentPanel"></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
 <div th:include="layout :: footer"></div>
 </body>
