@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface CommentDao extends CrudRepository<Comment, Long> {
-    public List<Comment> findByUserId(Long userId);
+    public List<Comment> findByUserLogin(String userLogin);
     public List<Comment> findByPostId(Long postId);
 }

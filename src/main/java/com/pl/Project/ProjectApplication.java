@@ -37,7 +37,9 @@ public class ProjectApplication {
 
 	@PostConstruct
 	public void init(){
-		User user = new User("name", "surname", "login", passwordEncoder.encode("password123"), 9, "normalUser");
+		String actualDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
+
+		User user = new User("name", "surname", "uniqueLogin228", passwordEncoder.encode("password123"), 9, "normalUser");
 		userDao.save(user);
 		userDao.save(new User("name1","surname1","login1",passwordEncoder.encode("password123"),91,"normalUser"));
 		userDao.save(new User("name2","surname2","login2",passwordEncoder.encode("password123"),92,"normalUser"));
@@ -51,14 +53,10 @@ public class ProjectApplication {
 		postDao.save(new Post("1984","George Orwell",20,"https://wordery.com/jackets/6e2f899f/1984-george-orwell-9781432839611.jpg", BookGenre.Classic));
 		postDao.save(new Post("The Book Thief","Markus Zusak",12,"https://images-na.ssl-images-amazon.com/images/I/9123eop9gIL.jpg", BookGenre.FanFiction));
 
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-		System.out.println(dateFormat.format(date));
-
 		List<Comment> list = new ArrayList<>();
-		Comment comment = new Comment("text comment",dateFormat.format(date), user.getId(), post.getId());
-		Comment comment1 = new Comment("text comment1",dateFormat.format(date), user.getId(), post.getId());
-		Comment comment2 = new Comment("text comment2",dateFormat.format(date), user.getId(), post.getId());
+		Comment comment = new Comment("text comment",actualDate, user.getLogin(), post.getId());
+		Comment comment1 = new Comment("text comment1",actualDate, user.getLogin(), post.getId());
+		Comment comment2 = new Comment("text comment2",actualDate, user.getLogin(), post.getId());
 		commentDao.save(comment);
 		commentDao.save(comment1);
 		commentDao.save(comment2);

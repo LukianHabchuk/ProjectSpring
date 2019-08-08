@@ -136,8 +136,11 @@ hr {
   transform: rotate(-10deg);
 }
 
-footer .myfooter {
-  margin-bottom: 100px;
+footer {
+  text-align: center;
+  padding-bottom: 20px;
+  margin-top: 100px;
+  background-color: #4f5f76;
   text-shadow: -1px -1px #000,0 1px 0 #444;
   color: #222;
   transition: all 1s;

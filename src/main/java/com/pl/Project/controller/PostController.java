@@ -1,6 +1,7 @@
 package com.pl.Project.controller;
 
 import com.pl.Project.entity.BookGenre;
+import com.pl.Project.entity.Comment;
 import com.pl.Project.entity.Post;
 import com.pl.Project.service.CommentService;
 import com.pl.Project.service.PostService;
@@ -29,14 +30,16 @@ public class PostController {
     }
 
     @GetMapping(value = {"/updatepost/{id}","/updatepost.html/{id}"})
-    public String updatePost(Model m, @PathVariable Long id) {
+    public String updatepost(Model m, @PathVariable Long id) {
+        List<BookGenre> bookGenres = Arrays.asList(BookGenre.values());
         m.addAttribute("post",postService.getPost(id));
+        m.addAttribute("genres",bookGenres);
         return "updatepost";
     }
 
-    @PostMapping(value = {"/updatepost.html","/updatepost"})
-    public String updatePost(@ModelAttribute(value = "post") Post post, Model m) {
-        this.postService.updatePost(post,m);
+    @PostMapping(value = {"/updatepost.html/{id}","/updatepost/{id}"})
+    public String updatepost(@ModelAttribute(value = "post") Post post,@PathVariable("id") Long id, Model m) {
+        this.postService.updatePost(post,m,id);
 
         return "redirect:/store";
     }
@@ -44,9 +47,10 @@ public class PostController {
     @GetMapping(value = {"/createpost.html","/createpost","/createpost.html/contact"})
     public String createpost(Model model) {
         List<BookGenre> bookGenres = Arrays.asList(BookGenre.values());
+        model.addAttribute("commentText", "");
         model.addAttribute("post",new Post());
         model.addAttribute("genres",bookGenres);
-        return "createpost";
+        return "/createpost";
     }
 
     @PostMapping(value = {"/createpost.html","/createpost","/createpost.html/contact"})
@@ -57,15 +61,13 @@ public class PostController {
     }
 
     @GetMapping(value = {"/deletepost.html/{id}","/deletepost/{id}","/deletepost.html/contact/{id}"})
-    public String deletepost(@PathVariable("id") String id, Model model) {
-
+    public String deletepost(@PathVariable("id") String id) {
         this.postService.deletePost(Long.decode(id));
         return "redirect:/store";
     }
 
     @GetMapping(value = {"/addtocart.html/{id}","/addtocart/{id}","/addtocart.html/contact/{id}"})
     public String addtocart(@PathVariable("id") String id, Principal principal, Model model) {
-
         this.postService.addtocart(Long.decode(id), principal, model);
         return "redirect:/store";
     }

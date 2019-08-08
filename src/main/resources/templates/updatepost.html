@@ -10,7 +10,7 @@
 
 
 <div >
-    <form th:action="@{/updatepost}" method="post" th:object="${post}">
+    <form th:action="@{/updatepost/__${post.id}__}" method="post" th:object="${post}">
 
         <div class="top-row">
             <div class="field-wrap">
@@ -64,7 +64,9 @@
                     Genre<span class="req">*</span>
                 </label>
                 <label>
-                    <input type="text" th:field="*{genre}" th:text="${post.genre}"/>
+                    <select th:field="*{genre}">
+                        <option th:each="genre : ${genres}" th:value="${genre}" th:text="${genres.get(genreStat.index)}" th:type="text"></option>
+                    </select>
                 </label>
             </div>
 

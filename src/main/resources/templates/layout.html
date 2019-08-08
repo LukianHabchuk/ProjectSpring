@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/font-awesome.min.css}">
-    <script th:src="@{/js/bootstrap.js}"></script>
+    <script th:src="@{/js/bootstrap.js/bootstrap.min.js}"></script>
 </head>
 <body>
 
@@ -49,12 +49,12 @@
 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active" sec:authorize="!isAuthenticated()"><a href="main.html" >Home</a></li>
-                    <li sec:authorize="!isAuthenticated()"><a href="store.html">Store</a></li>
-                    <li sec:authorize="!isAuthenticated()"><a href="about.html">About</a></li>
-                    <li sec:authorize="isAuthenticated()"><a href="profile.html">Profile</a></li>
-                    <li sec:authorize="!isAuthenticated()"><a href="faqs.html">FAQs</a></li>
-                    <li sec:authorize="isAuthenticated()"><a href="contact.html"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
+                    <li class="active" sec:authorize="!isAuthenticated()"><a href="/main.html" >Home</a></li>
+                    <li sec:authorize="!isAuthenticated()"><a href="/store.html">Store</a></li>
+                    <li sec:authorize="!isAuthenticated()"><a href="/about.html">About</a></li>
+                    <li sec:authorize="isAuthenticated()"><a href="/profile.html">Profile</a></li>
+                    <li sec:authorize="!isAuthenticated()"><a href="/faqs.html">FAQs</a></li>
+                    <li sec:authorize="isAuthenticated()"><a href="/contact.html"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
                 </ul>
             </div>
 
@@ -74,13 +74,13 @@
                                 <a href="#" class="pull-left">
                                     <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
                                 </a>
-                                <a class="pull-right" href="@{/deletecomment/__${comment.id}__}">Delete comment</a>
+                                <a class="pull-right" th:href="@{/postdetails/__${post.id}__/__${comment.id}__}">Delete comment</a>
                                 <br><br>
                                 <div class="media-body">
                                 <span class="text-muted pull-right">
                                     <small class="text-muted" th:text="${comment.date}"></small>
                                 </span>
-                                    <strong class="text-success" th:text="'User id'+${comment.userId}"></strong>
+                                    <strong class="text-success" th:text="'User login: '+${comment.userLogin}"></strong>
                                     <p th:text="'Text: '+${comment.text}"></p>
                                 </div>
                             </li>
@@ -95,9 +95,11 @@
 </div>
 
 <div th:fragment="footer">
-    <div class="myfooter">
-        <p>Created by Lukian Hrabchuk</p>
-    </div>
+    <footer>
+        <div class="myfooter">
+            <p>Created by Lukian Hrabchuk</p>
+        </div>
+    </footer>
 </div>
 
 </body>

@@ -1,7 +1,6 @@
 package com.pl.Project.entity;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 public class Comment {
@@ -10,16 +9,16 @@ public class Comment {
     private Long id;
     private String text;
     private String date;
-    private Long userId;
+    private String userLogin;
     private Long postId;
 
     public Comment() {
     }
 
-    public Comment(String text, String date, Long userId, Long postId) {
+    public Comment(String text, String date, String userLogin, Long postId) {
         this.text = text;
         this.date = date;
-        this.userId = userId;
+        this.userLogin = userLogin;
         this.postId = postId;
     }
 
@@ -39,12 +38,12 @@ public class Comment {
         this.text = text;
     }
 
-    public Long getUserId() {
-        return userId;
+    public String getUserLogin() {
+        return userLogin;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
     }
 
     public Long getPostId() {
@@ -68,7 +67,7 @@ public class Comment {
         return "Comment{" +
                 "id=" + id +
                 ", text='" + text + '\'' +
-                ", userId=" + userId +
+                ", userId=" + userLogin +
                 ", postId=" + postId +
                 '}';
     }

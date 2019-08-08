@@ -11,7 +11,7 @@
     <div class="nav-wrapper">
         <form>
             <div class="input-field">
-                <input style="width: 500px" name="query" id="search" type="search" required>
+                <input style="width: 500px" name="query" id="search" type="search">
                 <button class="label-icon" for="search"><i class="material-icons">search</i></button>
             </div>
         </form>
@@ -57,10 +57,10 @@
                         </tr>
                         <tr>
                             <td height="30">Price:</td>
-                            <td th:text="${product.price}"></td>
+                            <td th:text="${product.price}+'$'"></td>
                         </tr>
                         <tr>
-                            <td><a th:href="@{/postdetails.html/__${product.getId()}__}">Details</a></td>
+                            <td><a th:href="@{/postdetails/__${product.getId()}__}">Details</a></td>
                             <td><a th:href="@{/updatepost/__${product.getId()}__}">Update</a></td>
                             <td><a th:href="@{/deletepost/__${product.getId()}__}">Delete</a></td>
                         </tr>

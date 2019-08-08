@@ -37,7 +37,7 @@ public class PostService {
         this.postDao.save(post);
     }
 
-    public void updatePost(Post post, Model m){
+    public void updatePost(Post post, Model m,Long id){
         if(post!=null){
             this.postDao.save(post);
             m.addAttribute("post",post);

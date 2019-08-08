@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:include="layout::head">
+    <title>postdetails</title>
 </head>
 <body>
 <h1>its post details page</h1>
 <div th:include="layout :: logpass"></div>
 <div th:include="layout :: navigationPanel"></div>
 
-<h2>Product Details</h2>
+<h2>Post Details</h2>
 <div th:if="${!#lists.isEmpty(post)}">
     <div class="row bootstrap snippets">
         <div class="col-md-6 col-md-offset-2 col-sm-12">
@@ -25,7 +26,7 @@
                     <td th:text="'Genre: '+${post.genre}"></td>
                 </tr>
                 <tr>
-                    <td th:text="'Price: '+${post.price}"></td>
+                    <td th:text="'Price: '+${post.price}+'$'"></td>
                 </tr>
                 <tr>
                     <td>
@@ -35,9 +36,16 @@
                     </td>
                 </tr>
             </table>
+            <div th:action="@{/postdetails/__${post.id}__}" class="input-field">
+                <label >
+                    <input name="commentText" type="text" required>
+                </label>
+                <button type="submit">Add comment</button>
+            </div>
         </div>
     </div>
 </div>
+
 <div th:include="layout :: footer"></div>
 </body>
 </html>

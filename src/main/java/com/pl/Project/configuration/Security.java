@@ -47,7 +47,7 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .antMatchers("/contact.html").authenticated()
                 .antMatchers("/logout").authenticated()
                 .antMatchers("/updatepost/{id}").authenticated()
-                .antMatchers("/postdetails.html/{id}").authenticated()
+                .antMatchers("/postdetails/{id}").authenticated()
                 .antMatchers("/deletepost/{id}").authenticated()
                 .antMatchers("/addtocart/{id}").authenticated()
                 .antMatchers("/createpost.html").authenticated()
